@@ -1,0 +1,96 @@
+[
+  {
+    "id": "user-1",
+    "name": "Alice Tan",
+    "roles": ["Student"],
+    "email": "alice.tan@school.edu.sg",
+    "grade": "S3",
+    "className": "S3-01",
+    "identities": [
+      {
+        "provider": "Google",
+        "subject": "alice.tan.google@gmail.com",
+        "linkedAt": "2024-01-15T08:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "user-2", 
+    "name": "Mr. Lee Wei Ming",
+    "roles": ["Teacher"],
+    "email": "lee.weiming@school.edu.sg",
+    "staffNo": "T001",
+    "identities": [
+      {
+        "provider": "Singpass",
+        "subject": "S1234567A",
+        "linkedAt": "2024-01-10T09:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "user-3",
+    "name": "Ms. Ong Li Hua", 
+    "roles": ["HOD"],
+    "email": "ong.lihua@school.edu.sg",
+    "staffNo": "H001",
+    "identities": [
+      {
+        "provider": "Google",
+        "subject": "ong.lihua@school.edu.sg",
+        "linkedAt": "2024-01-08T10:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "user-4",
+    "name": "Dr. Lim Boon Keng",
+    "roles": ["Principal"],
+    "email": "lim.boonkeng@school.edu.sg", 
+    "staffNo": "P001",
+    "identities": [
+      {
+        "provider": "Singpass",
+        "subject": "S9876543B",
+        "linkedAt": "2024-01-05T11:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "user-5",
+    "name": "Admin Bot",
+    "roles": ["Admin"],
+    "email": "admin@school.edu.sg",
+    "staffNo": "A001",
+    "identities": [
+      {
+        "provider": "Google", 
+        "subject": "admin@school.edu.sg",
+        "linkedAt": "2024-01-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "user-6",
+    "name": "Bob Chen",
+    "roles": ["Student"],
+    "email": "bob.chen@school.edu.sg",
+    "grade": "S2",
+    "className": "S2-03"
+  },
+  {
+    "id": "user-7",
+    "name": "Carol Wong",
+    "roles": ["Student"], 
+    "email": "carol.wong@school.edu.sg",
+    "grade": "S4",
+    "className": "S4-02"
+  },
+  {
+    "id": "user-8",
+    "name": "Ms. Sarah Johnson",
+    "roles": ["Teacher"],
+    "email": "sarah.johnson@school.edu.sg",
+    "staffNo": "T002"
+  }
+]

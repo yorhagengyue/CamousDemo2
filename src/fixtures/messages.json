@@ -1,0 +1,62 @@
+[
+  {
+    "id": "msg-1",
+    "title": "Welcome to New Semester",
+    "body": "Welcome back students! The new semester begins next Monday. Please check your course schedules and prepare accordingly. Remember to bring all required textbooks and materials. Looking forward to a productive semester ahead!",
+    "senderId": "user-4",
+    "recipients": ["user-1", "user-6", "user-7"],
+    "createdAt": "2024-01-15T09:00:00Z",
+    "readBy": ["user-1"],
+    "type": "announce"
+  },
+  {
+    "id": "msg-2",
+    "title": "Math Assignment Due Reminder",
+    "body": "This is a reminder that your mathematics assignment on algebraic expressions is due this Friday. Please submit your work through the course portal. If you have any questions, feel free to reach out during office hours.",
+    "senderId": "user-2",
+    "recipients": ["user-1", "user-6"],
+    "createdAt": "2024-01-16T14:30:00Z", 
+    "readBy": [],
+    "type": "direct"
+  },
+  {
+    "id": "msg-3",
+    "title": "Physics Lab Session Canceled",
+    "body": "Due to equipment maintenance, today's physics lab session is canceled. We will reschedule it for next week. Please check your updated timetable for the new slot.",
+    "senderId": "user-2",
+    "recipients": ["user-1", "user-6"],
+    "createdAt": "2024-01-17T08:15:00Z",
+    "readBy": ["user-6"],
+    "type": "announce"
+  },
+  {
+    "id": "msg-4",
+    "title": "Parent-Teacher Conference",
+    "body": "Dear parents and students, we will be holding parent-teacher conferences next month. Please book your preferred time slots through the school portal. This is a great opportunity to discuss academic progress and future goals.",
+    "senderId": "user-3",
+    "recipients": ["user-1", "user-6", "user-7"],
+    "createdAt": "2024-01-18T16:00:00Z",
+    "readBy": ["user-7"],
+    "type": "announce"
+  },
+  {
+    "id": "msg-5",
+    "title": "System Maintenance Notice",
+    "body": "The school portal will undergo scheduled maintenance this weekend from Saturday 10 PM to Sunday 6 AM. During this time, the system will be inaccessible. Please plan accordingly and complete any urgent tasks before the maintenance window.",
+    "senderId": "user-5",
+    "recipients": ["user-1", "user-2", "user-3", "user-4", "user-6", "user-7", "user-8"],
+    "createdAt": "2024-01-19T11:00:00Z",
+    "readBy": ["user-2", "user-3", "user-4"],
+    "type": "announce"
+  },
+  {
+    "id": "msg-6",
+    "title": "Re: Assignment Extension Request",
+    "body": "Hi Alice, I've reviewed your request for an extension on the chemistry report. Given your recent illness, I'm granting a 3-day extension. The new due date is Friday. Please ensure you submit on time. Get well soon!",
+    "senderId": "user-8",
+    "recipients": ["user-1"],
+    "createdAt": "2024-01-20T13:45:00Z",
+    "readBy": [],
+    "type": "direct"
+  }
+]

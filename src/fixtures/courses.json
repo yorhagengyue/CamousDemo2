@@ -1,0 +1,140 @@
+[
+  {
+    "id": "course-1",
+    "name": "Mathematics (Advanced)",
+    "grade": "S3",
+    "credit": 4,
+    "teacherId": "user-2",
+    "capacity": 30,
+    "enrolled": 25,
+    "description": "Advanced mathematics covering algebra, geometry, and basic calculus concepts for secondary 3 students.",
+    "chapters": [
+      {
+        "id": "ch-1",
+        "title": "Algebra Fundamentals",
+        "resources": [
+          {
+            "id": "res-1",
+            "title": "Introduction to Algebraic Expressions",
+            "type": "video",
+            "url": "/resources/math-s3-ch1-video1.mp4"
+          },
+          {
+            "id": "res-2", 
+            "title": "Practice Worksheet - Basic Algebra",
+            "type": "document",
+            "url": "/resources/math-s3-ch1-worksheet1.pdf"
+          }
+        ]
+      },
+      {
+        "id": "ch-2",
+        "title": "Geometry and Trigonometry",
+        "resources": [
+          {
+            "id": "res-3",
+            "title": "Triangle Properties and Proofs",
+            "type": "video", 
+            "url": "/resources/math-s3-ch2-video1.mp4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-2",
+    "name": "Physics (Core)",
+    "grade": "S3",
+    "credit": 4,
+    "teacherId": "user-2", 
+    "capacity": 28,
+    "enrolled": 22,
+    "description": "Core physics concepts including mechanics, waves, and electricity for secondary 3 students.",
+    "chapters": [
+      {
+        "id": "ch-3",
+        "title": "Mechanics and Motion",
+        "resources": [
+          {
+            "id": "res-4",
+            "title": "Newton's Laws of Motion",
+            "type": "video",
+            "url": "/resources/physics-s3-ch1-video1.mp4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-3",
+    "name": "English Literature",
+    "grade": "S4",
+    "credit": 3,
+    "teacherId": "user-8",
+    "capacity": 32,
+    "enrolled": 28,
+    "description": "Exploring classic and contemporary literature with focus on critical analysis and writing skills.",
+    "chapters": [
+      {
+        "id": "ch-4", 
+        "title": "Poetry Analysis",
+        "resources": [
+          {
+            "id": "res-5",
+            "title": "Understanding Metaphors and Symbolism",
+            "type": "document",
+            "url": "/resources/english-s4-ch1-notes.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-4",
+    "name": "Chemistry (Basics)",
+    "grade": "S2",
+    "credit": 3,
+    "teacherId": "user-8",
+    "capacity": 25,
+    "enrolled": 20,
+    "description": "Introduction to basic chemical concepts, periodic table, and simple reactions.",
+    "chapters": [
+      {
+        "id": "ch-5",
+        "title": "Atomic Structure",
+        "resources": [
+          {
+            "id": "res-6",
+            "title": "Atoms and Elements Quiz",
+            "type": "quiz",
+            "url": "/resources/chemistry-s2-ch1-quiz1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-5",
+    "name": "History (Singapore)",
+    "grade": "S3", 
+    "credit": 3,
+    "teacherId": "user-2",
+    "capacity": 30,
+    "enrolled": 24,
+    "description": "Singapore's history from colonial times to independence and modern development.",
+    "chapters": [
+      {
+        "id": "ch-6",
+        "title": "Colonial Period",
+        "resources": [
+          {
+            "id": "res-7",
+            "title": "British Colonial Rule Documentary",
+            "type": "video",
+            "url": "/resources/history-s3-ch1-video1.mp4"
+          }
+        ]
+      }
+    ]
+  }
+]

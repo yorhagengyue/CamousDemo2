@@ -1,0 +1,93 @@
+[
+  {
+    "id": "att-1",
+    "date": "2024-01-15",
+    "personType": "Student",
+    "personId": "user-1",
+    "status": "present",
+    "lessonId": "lesson-1",
+    "lessonName": "Mathematics (Advanced) - Period 1",
+    "markedBy": "user-2",
+    "markedAt": "2024-01-15T08:05:00Z"
+  },
+  {
+    "id": "att-2",
+    "date": "2024-01-15",
+    "personType": "Student", 
+    "personId": "user-6",
+    "status": "late",
+    "reason": "Traffic jam",
+    "lessonId": "lesson-2", 
+    "lessonName": "Chemistry (Basics) - Period 2",
+    "markedBy": "user-8",
+    "markedAt": "2024-01-15T09:15:00Z"
+  },
+  {
+    "id": "att-3",
+    "date": "2024-01-16",
+    "personType": "Student",
+    "personId": "user-1",
+    "status": "absent",
+    "reason": "Sick leave (approved)",
+    "lessonId": "lesson-3",
+    "lessonName": "Physics (Core) - Period 3",
+    "markedBy": "user-2", 
+    "markedAt": "2024-01-16T10:05:00Z"
+  },
+  {
+    "id": "att-4",
+    "date": "2024-01-16",
+    "personType": "Student",
+    "personId": "user-7",
+    "status": "present",
+    "lessonId": "lesson-4",
+    "lessonName": "English Literature - Period 1",
+    "markedBy": "user-8",
+    "markedAt": "2024-01-16T08:05:00Z"
+  },
+  {
+    "id": "att-5",
+    "date": "2024-01-17",
+    "personType": "Student",
+    "personId": "user-1", 
+    "status": "present",
+    "lessonId": "lesson-5",
+    "lessonName": "History (Singapore) - Period 2",
+    "markedBy": "user-2",
+    "markedAt": "2024-01-17T09:05:00Z"
+  },
+  {
+    "id": "att-6",
+    "date": "2024-01-17",
+    "personType": "Student",
+    "personId": "user-6",
+    "status": "present", 
+    "lessonId": "lesson-6",
+    "lessonName": "Chemistry (Basics) - Period 4",
+    "markedBy": "user-8",
+    "markedAt": "2024-01-17T14:05:00Z"
+  },
+  {
+    "id": "att-7",
+    "date": "2024-01-18",
+    "personType": "Student",
+    "personId": "user-7",
+    "status": "late",
+    "reason": "Medical appointment",
+    "lessonId": "lesson-7", 
+    "lessonName": "English Literature - Period 1",
+    "markedBy": "user-8",
+    "markedAt": "2024-01-18T08:20:00Z"
+  },
+  {
+    "id": "att-8",
+    "date": "2024-01-18",
+    "personType": "Student",
+    "personId": "user-1",
+    "status": "present",
+    "lessonId": "lesson-8",
+    "lessonName": "Mathematics (Advanced) - Period 2",
+    "markedBy": "user-2",
+    "markedAt": "2024-01-18T09:05:00Z"
+  }
+]

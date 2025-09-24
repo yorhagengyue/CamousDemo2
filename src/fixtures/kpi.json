@@ -1,0 +1,72 @@
+[
+  {
+    "date": "2024-01-15",
+    "attendanceRate": 92.5,
+    "leaveRate": 5.2,
+    "enrollCount": 147,
+    "dau": 285,
+    "wau": 312,
+    "avgApprovalHours": 4.2,
+    "errorRate": 0.8
+  },
+  {
+    "date": "2024-01-16", 
+    "attendanceRate": 89.3,
+    "leaveRate": 7.1,
+    "enrollCount": 152,
+    "dau": 268,
+    "wau": 318,
+    "avgApprovalHours": 3.8,
+    "errorRate": 1.2
+  },
+  {
+    "date": "2024-01-17",
+    "attendanceRate": 94.1,
+    "leaveRate": 3.9,
+    "enrollCount": 156,
+    "dau": 301,
+    "wau": 325,
+    "avgApprovalHours": 5.1,
+    "errorRate": 0.6
+  },
+  {
+    "date": "2024-01-18",
+    "attendanceRate": 91.7,
+    "leaveRate": 6.3,
+    "enrollCount": 149, 
+    "dau": 278,
+    "wau": 320,
+    "avgApprovalHours": 4.7,
+    "errorRate": 0.9
+  },
+  {
+    "date": "2024-01-19",
+    "attendanceRate": 93.8,
+    "leaveRate": 4.5,
+    "enrollCount": 161,
+    "dau": 295,
+    "wau": 328,
+    "avgApprovalHours": 3.2,
+    "errorRate": 0.7
+  },
+  {
+    "date": "2024-01-20",
+    "attendanceRate": 88.9,
+    "leaveRate": 8.2,
+    "enrollCount": 143,
+    "dau": 256,
+    "wau": 315,
+    "avgApprovalHours": 6.4,
+    "errorRate": 1.5
+  },
+  {
+    "date": "2024-01-21",
+    "attendanceRate": 96.2,
+    "leaveRate": 2.1,
+    "enrollCount": 168,
+    "dau": 318,
+    "wau": 335,
+    "avgApprovalHours": 2.9,
+    "errorRate": 0.4
+  }
+]

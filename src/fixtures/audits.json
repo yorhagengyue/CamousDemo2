@@ -1,0 +1,143 @@
+[
+  {
+    "id": "audit-1",
+    "actorId": "user-1", 
+    "actorName": "Alice Tan",
+    "action": "login",
+    "resource": "/login",
+    "ip": "192.168.1.101",
+    "timestamp": "2024-01-21T08:15:00Z",
+    "details": {
+      "provider": "Google",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    }
+  },
+  {
+    "id": "audit-2",
+    "actorId": "user-2",
+    "actorName": "Mr. Lee Wei Ming", 
+    "action": "mark_attendance",
+    "resource": "/api/attendance/mark",
+    "ip": "192.168.1.102",
+    "timestamp": "2024-01-21T08:30:00Z",
+    "details": {
+      "lessonId": "lesson-9",
+      "studentsMarked": 25,
+      "classId": "S3-01"
+    }
+  },
+  {
+    "id": "audit-3",
+    "actorId": "user-3",
+    "actorName": "Ms. Ong Li Hua",
+    "action": "approve_leave",
+    "resource": "/api/leaves/leave-6/approve",
+    "ip": "192.168.1.103", 
+    "timestamp": "2024-01-21T09:45:00Z",
+    "details": {
+      "leaveId": "leave-6",
+      "applicantId": "user-6",
+      "reason": "Family emergency"
+    }
+  },
+  {
+    "id": "audit-4",
+    "actorId": "user-5",
+    "actorName": "Admin Bot",
+    "action": "role_assignment",
+    "resource": "/api/admin/roles",
+    "ip": "192.168.1.105",
+    "timestamp": "2024-01-21T10:00:00Z",
+    "details": {
+      "targetUserId": "user-9",
+      "rolesAdded": ["Teacher"],
+      "rolesRemoved": []
+    }
+  },
+  {
+    "id": "audit-5",
+    "actorId": "user-1",
+    "actorName": "Alice Tan",
+    "action": "submit_leave",
+    "resource": "/api/leaves",
+    "ip": "192.168.1.101",
+    "timestamp": "2024-01-21T11:20:00Z",
+    "details": {
+      "leaveType": "sick",
+      "duration": "1 day",
+      "startDate": "2024-01-22"
+    }
+  },
+  {
+    "id": "audit-6",
+    "actorId": "user-4",
+    "actorName": "Dr. Lim Boon Keng",
+    "action": "view_reports",
+    "resource": "/reports",
+    "ip": "192.168.1.104",
+    "timestamp": "2024-01-21T12:30:00Z",
+    "details": {
+      "reportType": "attendance_overview",
+      "dateRange": "2024-01-15 to 2024-01-21",
+      "filters": {
+        "grade": "all",
+        "class": "all"
+      }
+    }
+  },
+  {
+    "id": "audit-7",
+    "actorId": "user-8",
+    "actorName": "Ms. Sarah Johnson",
+    "action": "send_message",
+    "resource": "/api/messages",
+    "ip": "192.168.1.108",
+    "timestamp": "2024-01-21T13:15:00Z",
+    "details": {
+      "recipientCount": 12,
+      "messageType": "direct",
+      "subject": "Assignment Reminder"
+    }
+  },
+  {
+    "id": "audit-8",
+    "actorId": "user-6",
+    "actorName": "Bob Chen",
+    "action": "course_enrollment",
+    "resource": "/api/enroll",
+    "ip": "192.168.1.106",
+    "timestamp": "2024-01-21T14:00:00Z",
+    "details": {
+      "courseId": "course-3",
+      "courseName": "English Literature",
+      "enrollmentStatus": "waitlist"
+    }
+  },
+  {
+    "id": "audit-9",
+    "actorId": "user-5",
+    "actorName": "Admin Bot", 
+    "action": "identity_binding",
+    "resource": "/api/admin/identity/bind",
+    "ip": "192.168.1.105",
+    "timestamp": "2024-01-21T15:30:00Z",
+    "details": {
+      "userId": "user-7",
+      "provider": "Singpass",
+      "action": "bind"
+    }
+  },
+  {
+    "id": "audit-10",
+    "actorId": "user-2",
+    "actorName": "Mr. Lee Wei Ming",
+    "action": "logout",
+    "resource": "/logout",
+    "ip": "192.168.1.102",
+    "timestamp": "2024-01-21T16:45:00Z",
+    "details": {
+      "sessionDuration": "8h 15m",
+      "pagesVisited": 23
+    }
+  }
+]

@@ -1,0 +1,131 @@
+{
+  "recentActivities": [
+    {
+      "id": "act-1",
+      "type": "assignment_submitted",
+      "title": "Mathematics Assignment #3 submitted",
+      "description": "Advanced Calculus - Derivatives and Applications",
+      "timestamp": "2024-01-21T14:30:00Z",
+      "status": "completed",
+      "course": "Mathematics (Advanced)"
+    },
+    {
+      "id": "act-2", 
+      "type": "grade_received",
+      "title": "Physics Quiz Grade: A-",
+      "description": "Newton's Laws of Motion - 87/100",
+      "timestamp": "2024-01-21T10:15:00Z",
+      "status": "completed",
+      "course": "Physics (Core)"
+    },
+    {
+      "id": "act-3",
+      "type": "leave_approved",
+      "title": "Leave request approved",
+      "description": "Sick leave for Jan 22 - Medical certificate verified",
+      "timestamp": "2024-01-20T16:45:00Z",
+      "status": "approved"
+    },
+    {
+      "id": "act-4",
+      "type": "message_received", 
+      "title": "New message from Mr. Lee",
+      "description": "Assignment deadline extended to Friday",
+      "timestamp": "2024-01-20T09:30:00Z",
+      "status": "unread"
+    }
+  ],
+  "upcomingDeadlines": [
+    {
+      "id": "dead-1",
+      "title": "Chemistry Lab Report",
+      "course": "Chemistry (Basics)",
+      "dueDate": "2024-01-25T23:59:00Z",
+      "priority": "high",
+      "type": "assignment"
+    },
+    {
+      "id": "dead-2",
+      "title": "History Essay - Colonial Period",
+      "course": "History (Singapore)",
+      "dueDate": "2024-01-28T23:59:00Z", 
+      "priority": "medium",
+      "type": "assignment"
+    },
+    {
+      "id": "dead-3",
+      "title": "Mathematics Mid-term Exam",
+      "course": "Mathematics (Advanced)",
+      "dueDate": "2024-02-01T09:00:00Z",
+      "priority": "high",
+      "type": "exam"
+    }
+  ],
+  "classSchedule": [
+    {
+      "id": "sched-1",
+      "courseId": "course-1",
+      "courseName": "Mathematics (Advanced)",
+      "time": "08:00-09:30",
+      "location": "Room A-201",
+      "teacher": "Mr. Lee Wei Ming",
+      "status": "upcoming"
+    },
+    {
+      "id": "sched-2", 
+      "courseId": "course-2",
+      "courseName": "Physics (Core)",
+      "time": "10:00-11:30",
+      "location": "Lab B-105",
+      "teacher": "Mr. Lee Wei Ming",
+      "status": "upcoming"
+    },
+    {
+      "id": "sched-3",
+      "courseId": "course-5",
+      "courseName": "History (Singapore)",
+      "time": "14:00-15:30",
+      "location": "Room C-301",
+      "teacher": "Mr. Lee Wei Ming", 
+      "status": "upcoming"
+    }
+  ],
+  "performanceMetrics": {
+    "currentGPA": 3.7,
+    "attendanceRate": 94.2,
+    "assignmentsCompleted": 23,
+    "assignmentsTotal": 25,
+    "creditsEarned": 18,
+    "creditsRequired": 24
+  },
+  "quickStats": [
+    {
+      "label": "Current GPA",
+      "value": "3.7",
+      "change": "+0.1",
+      "trend": "up",
+      "color": "green"
+    },
+    {
+      "label": "Attendance Rate",
+      "value": "94.2%",
+      "change": "-1.8%",
+      "trend": "down", 
+      "color": "yellow"
+    },
+    {
+      "label": "Assignments Due",
+      "value": "3",
+      "change": "+1",
+      "trend": "up",
+      "color": "red"
+    },
+    {
+      "label": "Credits Progress",
+      "value": "18/24",
+      "change": "+3",
+      "trend": "up",
+      "color": "blue"
+    }
+  ]
+}

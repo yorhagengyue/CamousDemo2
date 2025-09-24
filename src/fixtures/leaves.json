@@ -1,0 +1,87 @@
+[
+  {
+    "id": "leave-1",
+    "applicantId": "user-1",
+    "applicantRole": "Student",
+    "type": "sick",
+    "start": "2024-01-16T00:00:00Z",
+    "end": "2024-01-16T23:59:59Z",
+    "reason": "Fever and flu symptoms. Medical certificate attached.",
+    "status": "approved",
+    "approverId": "user-2",
+    "decidedAt": "2024-01-15T16:30:00Z",
+    "approverComment": "Get well soon. Medical certificate verified.",
+    "attachments": [
+      {
+        "id": "att-1",
+        "name": "medical_certificate.pdf",
+        "url": "/attachments/leave-1-medical-cert.pdf"
+      }
+    ]
+  },
+  {
+    "id": "leave-2",
+    "applicantId": "user-6",
+    "applicantRole": "Student", 
+    "type": "personal",
+    "start": "2024-01-19T00:00:00Z",
+    "end": "2024-01-19T23:59:59Z",
+    "reason": "Family wedding ceremony. Important family event that cannot be rescheduled.",
+    "status": "pending",
+    "attachments": []
+  },
+  {
+    "id": "leave-3",
+    "applicantId": "user-7",
+    "applicantRole": "Student",
+    "type": "other",
+    "start": "2024-01-22T00:00:00Z", 
+    "end": "2024-01-24T23:59:59Z",
+    "reason": "Representing school in national debate competition. Travel required for 3 days.",
+    "status": "approved",
+    "approverId": "user-3",
+    "decidedAt": "2024-01-18T10:15:00Z",
+    "approverComment": "Approved for school representation. Good luck with the competition!",
+    "attachments": [
+      {
+        "id": "att-2",
+        "name": "competition_invitation.pdf",
+        "url": "/attachments/leave-3-competition-invite.pdf"
+      }
+    ]
+  },
+  {
+    "id": "leave-4",
+    "applicantId": "user-8",
+    "applicantRole": "Teacher",
+    "type": "personal",
+    "start": "2024-01-25T00:00:00Z",
+    "end": "2024-01-26T23:59:59Z", 
+    "reason": "Attending professional development workshop on innovative teaching methods.",
+    "status": "approved",
+    "approverId": "user-3",
+    "decidedAt": "2024-01-20T14:00:00Z",
+    "approverComment": "Professional development approved. Please share insights with the team upon return.",
+    "attachments": [
+      {
+        "id": "att-3",
+        "name": "workshop_registration.pdf",
+        "url": "/attachments/leave-4-workshop-reg.pdf"
+      }
+    ]
+  },
+  {
+    "id": "leave-5",
+    "applicantId": "user-1",
+    "applicantRole": "Student",
+    "type": "sick",
+    "start": "2024-01-23T00:00:00Z",
+    "end": "2024-01-23T23:59:59Z",
+    "reason": "Dental appointment for emergency root canal treatment.",
+    "status": "rejected", 
+    "approverId": "user-2",
+    "decidedAt": "2024-01-22T11:30:00Z",
+    "approverComment": "Please schedule dental appointments outside school hours. Emergency treatments require medical documentation.",
+    "attachments": []
+  }
+]
