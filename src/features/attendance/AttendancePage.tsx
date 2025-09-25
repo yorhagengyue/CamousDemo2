@@ -34,9 +34,9 @@ const AttendancePage = () => {
   // Mock attendance marking state for teachers
   const [classToMark, setClassToMark] = useState('');
   const [studentsToMark, setStudentsToMark] = useState([
-    { id: 'user-1', name: 'Alice Tan', status: 'present' as const, reason: '' },
-    { id: 'user-6', name: 'Bob Chen', status: 'present' as const, reason: '' },
-    { id: 'user-7', name: 'Carol Wong', status: 'present' as const, reason: '' }
+    { id: 'user-1', name: 'Alice Tan', status: 'present' as 'present' | 'absent' | 'late', reason: '' },
+    { id: 'user-6', name: 'Bob Chen', status: 'present' as 'present' | 'absent' | 'late', reason: '' },
+    { id: 'user-7', name: 'Carol Wong', status: 'present' as 'present' | 'absent' | 'late', reason: '' }
   ]);
 
   useEffect(() => {

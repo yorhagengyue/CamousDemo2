@@ -6,7 +6,8 @@ import './styles/globals.css';
 import './i18n';
 
 async function enableMocking() {
-  if (process.env.NODE_ENV !== 'development') {
+  // Enable mocking in both development and production for demo purposes
+  if (typeof window === 'undefined') {
     return;
   }
 

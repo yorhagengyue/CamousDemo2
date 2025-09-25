@@ -23,7 +23,7 @@ export interface Message {
   recipients: string[];
   createdAt: string;
   readBy: string[];
-  type: 'announce' | 'direct';
+  type: 'announce' | 'direct' | string;
 }
 
 export interface Course {
@@ -41,7 +41,7 @@ export interface Course {
     resources: Array<{
       id: string;
       title: string;
-      type: 'video' | 'document' | 'quiz';
+      type: 'video' | 'document' | 'quiz' | string;
       url: string;
     }>;
   }>;
@@ -58,9 +58,9 @@ export interface Enrollment {
 export interface AttendanceRecord {
   id: string;
   date: string;
-  personType: 'Student' | 'Teacher';
+  personType: 'Student' | 'Teacher' | string;
   personId: string;
-  status: 'present' | 'absent' | 'late';
+  status: 'present' | 'absent' | 'late' | string;
   reason?: string;
   lessonId?: string;
   lessonName?: string;
@@ -71,12 +71,12 @@ export interface AttendanceRecord {
 export interface LeaveRequest {
   id: string;
   applicantId: string;
-  applicantRole: 'Student' | 'Teacher';
-  type: 'sick' | 'personal' | 'other';
+  applicantRole: 'Student' | 'Teacher' | string;
+  type: 'sick' | 'personal' | 'other' | string;
   start: string;
   end: string;
   reason: string;
-  status: 'pending' | 'approved' | 'rejected';
+  status: 'pending' | 'approved' | 'rejected' | string;
   approverId?: string;
   decidedAt?: string;
   approverComment?: string;
