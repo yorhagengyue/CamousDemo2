@@ -8,11 +8,14 @@ import {
   Sun, 
   User, 
   LogOut,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  UserCog,
+  RefreshCw
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
 import { useThemeStore } from '@/stores/themeStore';
+import type { Role } from '@/types';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,8 +28,10 @@ import { Input } from '@/components/ui/input';
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isRoleSwitching, setIsRoleSwitching] = useState(false);
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
+  const login = useAuthStore((state) => state.login);
   const { theme, toggleTheme } = useThemeStore();
 
   const handleLogout = async () => {
@@ -43,6 +48,38 @@ export const Header = () => {
     const newLang = i18n.language === 'en' ? 'zh' : 'en';
     i18n.changeLanguage(newLang);
   };
+
+  const handleRoleSwitch = async (newRole: Role) => {
+    if (!user) return;
+    
+    setIsRoleSwitching(true);
+    try {
+      // Simulate role switching API call
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          provider: 'Google', // Keep same provider
+          roleOverride: newRole,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        login(data.user, data.permissions);
+        // Refresh the page to load new role's content
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Role switch failed:', error);
+    } finally {
+      setIsRoleSwitching(false);
+    }
+  };
+
+  const availableRoles: Role[] = ['Student', 'Teacher', 'HOD', 'Principal', 'Admin'];
 
   return (
     <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/60 border-b border-gray-200 dark:border-gray-800 px-4 sm:px-6 py-3">
@@ -61,7 +98,49 @@ export const Header = () => {
         </div>
 
         {/* Right side actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
+          {/* Role Switch Button */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="h-9 px-3 bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-700/50 text-amber-800 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/30"
+                disabled={isRoleSwitching}
+              >
+                {isRoleSwitching ? (
+                  <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <UserCog className="h-4 w-4 mr-2" />
+                )}
+                <span className="text-xs font-medium">
+                  {user?.roles[0] || 'Student'}
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <div className="px-2 py-1.5 border-b border-slate-200 dark:border-slate-700">
+                <p className="text-xs font-medium text-slate-900 dark:text-white">Switch Role (Demo)</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Experience different dashboards</p>
+              </div>
+              {availableRoles.map((role) => (
+                <DropdownMenuItem
+                  key={role}
+                  onClick={() => handleRoleSwitch(role)}
+                  disabled={user?.roles.includes(role) || isRoleSwitching}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-sm">{role}</span>
+                    {user?.roles.includes(role) && (
+                      <span className="text-xs text-green-600 font-medium">Current</span>
+                    )}
+                  </div>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           {/* Notifications */}
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-5 w-5" />

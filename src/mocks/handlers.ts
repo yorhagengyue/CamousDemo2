@@ -79,26 +79,59 @@ const addAuditLog = (actorId: string, action: string, resource: string, details?
 export const handlers = [
   // Authentication endpoints
   http.post('/api/login', async ({ request }) => {
-    const { provider, roleOverride } = await request.json() as { 
-      provider: 'Google' | 'Singpass'; 
+    const body = await request.json() as { 
+      provider?: 'Google' | 'Singpass' | 'password'; 
       roleOverride?: string;
+      username?: string;
+      password?: string;
     };
     
-    // For demo purposes, simulate login based on provider
     let user: User;
     
-    if (roleOverride) {
-      // Find user with the specified role for demo
-      user = users.find(u => u.roles.includes(roleOverride as any)) || users[0];
+    if (body.provider === 'password') {
+      // Handle username/password login
+      const { username, password, roleOverride } = body;
+      
+      // Demo credentials validation
+      const validCredentials = [
+        { username: 'admin', password: 'password', role: 'Admin' },
+        { username: 'student', password: 'password', role: 'Student' },
+        { username: 'teacher', password: 'password', role: 'Teacher' },
+        { username: 'principal', password: 'password', role: 'Principal' },
+        { username: 'hod', password: 'password', role: 'HOD' }
+      ];
+      
+      const credential = validCredentials.find(
+        cred => cred.username === username && cred.password === password
+      );
+      
+      if (!credential) {
+        return HttpResponse.json(
+          { error: 'Invalid credentials' },
+          { status: 401 }
+        );
+      }
+      
+      // Find user by role
+      const targetRole = roleOverride || credential.role;
+      user = users.find(u => u.roles.includes(targetRole as any)) || users[0];
     } else {
-      // Default login logic
-      user = provider === 'Google' 
-        ? users.find(u => u.identities?.some(i => i.provider === 'Google')) || users[0]
-        : users.find(u => u.identities?.some(i => i.provider === 'Singpass')) || users[1];
+      // Handle SSO login
+      const { provider, roleOverride } = body;
+      
+      if (roleOverride) {
+        // Find user with the specified role for demo
+        user = users.find(u => u.roles.includes(roleOverride as any)) || users[0];
+      } else {
+        // Default login logic
+        user = provider === 'Google' 
+          ? users.find(u => u.identities?.some(i => i.provider === 'Google')) || users[0]
+          : users.find(u => u.identities?.some(i => i.provider === 'Singpass')) || users[1];
+      }
     }
     
     currentUser = user;
-    addAuditLog(user.id, 'login', '/login', { provider });
+    addAuditLog(user.id, 'login', '/login', { provider: body.provider || 'unknown' });
     
     return HttpResponse.json({ 
       user, 
