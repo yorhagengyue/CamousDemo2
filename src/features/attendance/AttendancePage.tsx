@@ -28,9 +28,9 @@ const AttendancePage = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Attendance</h1>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Student Attendance</h1>
           <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Track and manage student attendance records
+            View and track daily attendance records for all students
           </p>
         </div>
         <div className="flex items-center space-x-3">
@@ -49,48 +49,56 @@ const AttendancePage = () => {
       {/* Attendance Grid */}
       <Card className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
         <CardContent className="p-6">
-          {/* Calendar Header */}
-          <div className="grid grid-cols-15 gap-2 mb-4">
-            <div className="text-sm font-medium text-slate-600 dark:text-slate-400 py-3">Student Name</div>
-            {days.map(day => (
-              <div key={day} className="text-center text-xs font-medium text-slate-500 dark:text-slate-400 py-3">
-                {day.toString().padStart(2, '0')}
-              </div>
-            ))}
-          </div>
+          {/* Student Attendance Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th className="text-left text-sm font-medium text-slate-600 dark:text-slate-400 py-3 px-4 sticky left-0 bg-white dark:bg-slate-800">
+                    Student Name
+                  </th>
+                  {days.map(day => (
+                    <th key={day} className="text-center text-xs font-medium text-slate-500 dark:text-slate-400 py-3 px-2 min-w-[40px]">
+                      {day.toString().padStart(2, '0')}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student, studentIndex) => (
+                  <tr key={student.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    {/* Student Name */}
+                    <td className="py-2 px-4 sticky left-0 bg-white dark:bg-slate-800">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-300/60 to-blue-400/60 rounded-full flex items-center justify-center text-slate-800 font-semibold text-xs">
+                          {student.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <span className="text-sm font-medium text-slate-900 dark:text-white">{student.name}</span>
+                      </div>
+                    </td>
 
-          {/* Student Attendance Rows */}
-          <div className="space-y-2">
-            {students.map((student, studentIndex) => (
-              <div key={student.id} className="grid grid-cols-15 gap-2 py-2 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
-                {/* Student Name */}
-                <div className="flex items-center py-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-300/60 to-blue-400/60 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-3">
-                    {student.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <span className="text-sm font-medium text-slate-900 dark:text-white">{student.name}</span>
-                </div>
-
-                {/* Attendance Status */}
-                {student.attendance.map((status, dayIndex) => (
-                  <div key={dayIndex} className="flex items-center justify-center py-2">
-                    {status === null ? (
-                      <div className="w-6 h-6 bg-slate-200/60 dark:bg-slate-600/60 rounded-lg flex items-center justify-center">
-                        <span className="text-xs text-slate-400">-</span>
-                      </div>
-                    ) : status ? (
-                      <div className="w-6 h-6 bg-blue-400/60 hover:bg-blue-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-                        <CheckCircle className="h-4 w-4 text-white" />
-                      </div>
-                    ) : (
-                      <div className="w-6 h-6 bg-red-400/60 hover:bg-red-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-                        <XCircle className="h-4 w-4 text-white" />
-                      </div>
-                    )}
-                  </div>
+                    {/* Attendance Status */}
+                    {student.attendance.map((status, dayIndex) => (
+                      <td key={dayIndex} className="py-2 px-2 text-center">
+                        {status === null ? (
+                          <div className="w-6 h-6 bg-slate-200/60 dark:bg-slate-600/60 rounded-lg flex items-center justify-center mx-auto">
+                            <span className="text-xs text-slate-400">-</span>
+                          </div>
+                        ) : status ? (
+                          <div className="w-6 h-6 bg-blue-400/60 hover:bg-blue-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer mx-auto">
+                            <CheckCircle className="h-4 w-4 text-white" />
+                          </div>
+                        ) : (
+                          <div className="w-6 h-6 bg-red-400/60 hover:bg-red-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer mx-auto">
+                            <XCircle className="h-4 w-4 text-white" />
+                          </div>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </div>
-            ))}
+              </tbody>
+            </table>
           </div>
 
           {/* Pagination */}

@@ -161,7 +161,7 @@ const CalendarPage = () => {
                       {dayEvents.slice(0, 3).map((event, eventIndex) => (
                         <div 
                           key={eventIndex}
-                          className={`${event.color} text-white text-xs p-1 rounded text-center font-medium cursor-pointer hover:opacity-80 transition-opacity`}
+                          className={`${event.color} text-slate-800 text-xs p-1 rounded text-center font-medium cursor-pointer hover:opacity-80 transition-opacity`}
                         >
                           {event.title.length > 12 ? event.title.substring(0, 12) + '...' : event.title}
                         </div>
@@ -195,7 +195,7 @@ const CalendarPage = () => {
                       <h4 className="font-semibold text-slate-800 text-sm">{event.title}</h4>
                       <span className="text-xs text-slate-700">{event.time}</span>
                     </div>
-                    <p className="text-xs text-slate-600">{event.group}</p>
+                    <p className="text-xs text-slate-700">{event.group}</p>
                   </div>
                 ))}
               </div>
