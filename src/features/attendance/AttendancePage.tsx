@@ -1,404 +1,118 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { 
-  UserCheck, 
-  Calendar, 
-  Clock, 
-  CheckCircle, 
-  XCircle,
-  AlertTriangle,
-  Download,
-  Filter,
-  Search,
-  Users,
-  BarChart3,
-  TrendingUp,
-  TrendingDown
-} from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import type { AttendanceRecord } from '@/types';
-import { formatDate, isToday } from '@/utils/date';
-import { useAuthStore } from '@/stores/authStore';
-import { downloadCSV } from '@/utils/export';
+import { CheckCircle, XCircle, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const AttendancePage = () => {
-  const { t } = useTranslation();
-  const user = useAuthStore((state) => state.user);
-  const [attendance, setAttendance] = useState<AttendanceRecord[]>([]);
-  const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0, 7));
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'mark' | 'history'>('overview');
+  const [selectedMonth, setSelectedMonth] = useState('April 2024');
+  const [selectedWeek, setSelectedWeek] = useState('Week 2-3');
+  const [selectedClass, setSelectedClass] = useState('Class 11A');
 
-  // Mock attendance marking state for teachers
-  const [classToMark, setClassToMark] = useState('');
-  const [studentsToMark, setStudentsToMark] = useState([
-    { id: 'user-1', name: 'Alice Tan', status: 'present' as 'present' | 'absent' | 'late', reason: '' },
-    { id: 'user-6', name: 'Bob Chen', status: 'present' as 'present' | 'absent' | 'late', reason: '' },
-    { id: 'user-7', name: 'Carol Wong', status: 'present' as 'present' | 'absent' | 'late', reason: '' }
-  ]);
+  const students = [
+    { name: 'Lucas Johnson', id: 'LJ-001', attendance: [true, false, true, true, true, null, null, true, true, true, true, true, null, null] },
+    { name: 'Emily Peterson', id: 'EP-002', attendance: [true, true, true, true, true, null, null, true, true, false, true, true, null, null] },
+    { name: 'Michael Brown', id: 'MB-003', attendance: [true, true, true, false, true, null, null, true, false, true, true, true, null, null] },
+    { name: 'Hannah White', id: 'HW-004', attendance: [true, false, true, true, true, null, null, true, true, true, false, true, null, null] },
+    { name: 'Oliver Martinez', id: 'OM-005', attendance: [true, true, true, true, true, null, null, true, true, true, true, true, null, null] },
+    { name: 'Isabella Garcia', id: 'IG-006', attendance: [true, true, true, true, false, null, null, true, true, true, true, true, null, null] },
+    { name: 'Ethan Lee', id: 'EL-007', attendance: [true, true, true, true, true, null, null, false, true, false, true, true, null, null] },
+    { name: 'Sophia Wilson', id: 'SW-008', attendance: [false, true, true, true, true, null, null, true, true, true, true, true, null, null] },
+    { name: 'Aiden Taylor', id: 'AT-009', attendance: [true, true, true, true, true, null, null, true, true, true, true, false, null, null] },
+    { name: 'Ava Smith', id: 'AS-010', attendance: [true, true, false, true, true, null, null, true, false, true, true, true, null, null] }
+  ];
 
-  useEffect(() => {
-    fetchAttendance();
-  }, []);
+  const days = Array.from({length: 14}, (_, i) => i + 8);
 
-  const fetchAttendance = async () => {
-    try {
-      const response = await fetch(`/api/attendance?role=${user?.roles[0]}`);
-      const data = await response.json();
-      setAttendance(data);
-    } catch (error) {
-      console.error('Failed to fetch attendance:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const calculateStats = () => {
-    const myAttendance = attendance.filter(a => a.personId === user?.id);
-    const total = myAttendance.length;
-    const present = myAttendance.filter(a => a.status === 'present').length;
-    const late = myAttendance.filter(a => a.status === 'late').length;
-    const absent = myAttendance.filter(a => a.status === 'absent').length;
-    
-    return {
-      total,
-      present,
-      late,
-      absent,
-      attendanceRate: total > 0 ? ((present + late) / total * 100) : 0
-    };
-  };
-
-  const submitAttendance = async () => {
-    try {
-      const attendanceRecords = studentsToMark.map(student => ({
-        personId: student.id,
-        status: student.status,
-        reason: student.reason,
-        date: new Date().toISOString().split('T')[0],
-        lessonId: 'lesson-current',
-        lessonName: classToMark
-      }));
-
-      const response = await fetch('/api/attendance/mark', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(attendanceRecords)
-      });
-
-      if (response.ok) {
-        alert('Attendance marked successfully!');
-        fetchAttendance();
-      }
-    } catch (error) {
-      console.error('Failed to submit attendance:', error);
-      alert('Failed to mark attendance. Please try again.');
-    }
-  };
-
-  const exportAttendance = () => {
-    const exportData = attendance.map(record => ({
-      Date: formatDate(record.date),
-      Student: 'Student Name', // Would be populated from user data
-      Status: record.status,
-      Lesson: record.lessonName || 'N/A',
-      Reason: record.reason || 'N/A',
-      'Marked By': 'Teacher Name', // Would be populated from user data
-      'Marked At': record.markedAt ? formatDate(record.markedAt) : 'N/A'
-    }));
-    
-    downloadCSV(exportData, `attendance-${selectedMonth}.csv`);
-  };
-
-  const stats = calculateStats();
-
-  const renderStudentView = () => (
+  return (
     <div className="space-y-6">
-      {/* Stats Overview */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card className="card-hover">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Attendance Rate</p>
-                <p className="text-2xl font-bold mt-1">{stats.attendanceRate.toFixed(1)}%</p>
-              </div>
-              <div className="p-2 rounded-lg bg-green-50 text-green-600">
-                <TrendingUp className="h-4 w-4" />
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">this semester</p>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Present</p>
-                <p className="text-2xl font-bold mt-1 text-green-600">{stats.present}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-green-50 text-green-600">
-                <CheckCircle className="h-4 w-4" />
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">out of {stats.total} classes</p>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Late</p>
-                <p className="text-2xl font-bold mt-1 text-yellow-600">{stats.late}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-yellow-50 text-yellow-600">
-                <Clock className="h-4 w-4" />
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">times this semester</p>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Absent</p>
-                <p className="text-2xl font-bold mt-1 text-red-600">{stats.absent}</p>
-              </div>
-              <div className="p-2 rounded-lg bg-red-50 text-red-600">
-                <XCircle className="h-4 w-4" />
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">times this semester</p>
-          </CardContent>
-        </Card>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Attendance</h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">
+            Track and manage student attendance records
+          </p>
+        </div>
+        <div className="flex items-center space-x-3">
+          <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+            <option>{selectedMonth}</option>
+          </select>
+          <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+            <option>{selectedWeek}</option>
+          </select>
+          <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+            <option>{selectedClass}</option>
+          </select>
+        </div>
       </div>
 
-      {/* Attendance History */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <div className="flex items-center">
-              <BarChart3 className="h-5 w-5 mr-2" />
-              {t('attendance.myAttendance')}
-            </div>
-            <Button variant="outline" size="sm" onClick={exportAttendance}>
-              <Download className="h-4 w-4 mr-2" />
-              {t('attendance.export')}
-            </Button>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {attendance.filter(a => a.personId === user?.id).slice(0, 10).map((record) => {
-              const StatusIcon = record.status === 'present' ? CheckCircle :
-                               record.status === 'late' ? Clock : XCircle;
-              const statusColors = {
-                present: 'text-green-600 bg-green-100',
-                late: 'text-yellow-600 bg-yellow-100',
-                absent: 'text-red-600 bg-red-100'
-              };
-
-              return (
-                <div key={record.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${statusColors[record.status]}`}>
-                      <StatusIcon className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium">{record.lessonName || 'Class'}</p>
-                      <p className="text-sm text-gray-600">{formatDate(record.date)}</p>
-                      {record.reason && (
-                        <p className="text-xs text-gray-500">Reason: {record.reason}</p>
-                      )}
-                    </div>
-                  </div>
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusColors[record.status]}`}>
-                    {record.status}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-
-  const renderTeacherView = () => (
-    <div className="space-y-6">
-      {/* Class Selection */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <Users className="h-5 w-5 mr-2" />
-            {t('attendance.markAttendance')}
-          </CardTitle>
-          <CardDescription>Select class and mark student attendance</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <label className="text-sm font-medium text-gray-700">Select Class</label>
-            <select
-              value={classToMark}
-              onChange={(e) => setClassToMark(e.target.value)}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            >
-              <option value="">Choose a class...</option>
-              <option value="Mathematics (Advanced) - S3-01">Mathematics (Advanced) - S3-01</option>
-              <option value="Physics (Core) - S3-01">Physics (Core) - S3-01</option>
-              <option value="History (Singapore) - S3-01">History (Singapore) - S3-01</option>
-            </select>
-          </div>
-
-          {classToMark && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h3 className="font-medium">Student Attendance</h3>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setStudentsToMark(prev => 
-                    prev.map(s => ({ ...s, status: 'present' as const, reason: '' }))
-                  )}
-                >
-                  Mark All Present
-                </Button>
+      {/* Attendance Grid */}
+      <Card className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
+        <CardContent className="p-6">
+          {/* Calendar Header */}
+          <div className="grid grid-cols-15 gap-2 mb-4">
+            <div className="text-sm font-medium text-slate-600 dark:text-slate-400 py-3">Student Name</div>
+            {days.map(day => (
+              <div key={day} className="text-center text-xs font-medium text-slate-500 dark:text-slate-400 py-3">
+                {day.toString().padStart(2, '0')}
               </div>
+            ))}
+          </div>
 
-              <div className="space-y-2">
-                {studentsToMark.map((student, index) => (
-                  <div key={student.id} className="flex items-center gap-3 p-3 border rounded-lg">
-                    <div className="flex-1">
-                      <p className="font-medium">{student.name}</p>
-                      <p className="text-sm text-gray-600">Student ID: {student.id}</p>
-                    </div>
-                    
-                    <div className="flex gap-2">
-                      {(['present', 'late', 'absent'] as const).map((status) => (
-                        <Button
-                          key={status}
-                          variant={student.status === status ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => {
-                            const newStudents = [...studentsToMark];
-                            newStudents[index] = { ...student, status };
-                            setStudentsToMark(newStudents);
-                          }}
-                        >
-                          {status}
-                        </Button>
-                      ))}
-                    </div>
-                    
-                    {student.status !== 'present' && (
-                      <Input
-                        placeholder="Reason"
-                        value={student.reason}
-                        onChange={(e) => {
-                          const newStudents = [...studentsToMark];
-                          newStudents[index] = { ...student, reason: e.target.value };
-                          setStudentsToMark(newStudents);
-                        }}
-                        className="w-32"
-                      />
+          {/* Student Attendance Rows */}
+          <div className="space-y-2">
+            {students.map((student, studentIndex) => (
+              <div key={student.id} className="grid grid-cols-15 gap-2 py-2 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
+                {/* Student Name */}
+                <div className="flex items-center py-2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-300/60 to-blue-400/60 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-3">
+                    {student.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <span className="text-sm font-medium text-slate-900 dark:text-white">{student.name}</span>
+                </div>
+
+                {/* Attendance Status */}
+                {student.attendance.map((status, dayIndex) => (
+                  <div key={dayIndex} className="flex items-center justify-center py-2">
+                    {status === null ? (
+                      <div className="w-6 h-6 bg-slate-200/60 dark:bg-slate-600/60 rounded-lg flex items-center justify-center">
+                        <span className="text-xs text-slate-400">-</span>
+                      </div>
+                    ) : status ? (
+                      <div className="w-6 h-6 bg-blue-400/60 hover:bg-blue-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+                        <CheckCircle className="h-4 w-4 text-white" />
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 bg-red-400/60 hover:bg-red-500/60 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
+                        <XCircle className="h-4 w-4 text-white" />
+                      </div>
                     )}
                   </div>
                 ))}
               </div>
+            ))}
+          </div>
 
-              <Button onClick={submitAttendance} className="w-full">
-                Submit Attendance
-              </Button>
+          {/* Pagination */}
+          <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
+            <Button size="sm" variant="outline">
+              <ChevronLeft className="h-4 w-4 mr-1" />
+              Previous
+            </Button>
+            <div className="flex items-center space-x-2">
+              {[1, 2, 3, 4, '...', 17].map((page, index) => (
+                <Button key={index} size="sm" variant={page === 1 ? "default" : "ghost"} className="w-8 h-8 p-0">
+                  {page}
+                </Button>
+              ))}
             </div>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Recent Attendance Records */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Attendance Records</CardTitle>
-          <CardDescription>Latest attendance data for your classes</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {attendance.slice(0, 8).map((record) => {
-              const StatusIcon = record.status === 'present' ? CheckCircle :
-                               record.status === 'late' ? Clock : XCircle;
-              const statusColors = {
-                present: 'text-green-600 bg-green-100',
-                late: 'text-yellow-600 bg-yellow-100',
-                absent: 'text-red-600 bg-red-100'
-              };
-
-              return (
-                <div key={record.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${statusColors[record.status]}`}>
-                      <StatusIcon className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium">{record.lessonName || 'Class'}</p>
-                      <p className="text-sm text-gray-600">{formatDate(record.date)}</p>
-                      <p className="text-xs text-gray-500">Student: System User</p>
-                    </div>
-                  </div>
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusColors[record.status]}`}>
-                    {record.status}
-                  </span>
-                </div>
-              );
-            })}
+            <Button size="sm" variant="outline">
+              Next
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
-
-  const isTeacher = user?.roles.some(role => ['Teacher', 'HOD'].includes(role));
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">{t('attendance.title')}</h1>
-        <p className="text-gray-500 dark:text-gray-400">
-          {isTeacher ? 'Mark attendance and manage class records' : 'Track your attendance and academic progress'}
-        </p>
-      </div>
-
-      {/* Tab Navigation */}
-      {isTeacher && (
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg w-fit">
-          {[
-            { id: 'overview', label: 'Overview', icon: BarChart3 },
-            { id: 'mark', label: 'Mark Attendance', icon: UserCheck },
-            { id: 'history', label: 'History', icon: Calendar }
-          ].map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <Button
-                key={tab.id}
-                variant={activeTab === tab.id ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setActiveTab(tab.id as any)}
-                className="flex items-center gap-2"
-              >
-                <Icon className="h-4 w-4" />
-                {tab.label}
-              </Button>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Content based on role and tab */}
-      {isTeacher && activeTab === 'mark' ? renderTeacherView() : renderStudentView()}
     </div>
   );
 };

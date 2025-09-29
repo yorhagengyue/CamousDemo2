@@ -58,6 +58,10 @@ export const router = createBrowserRouter([
             lazy: () => import('@/features/attendance/AttendancePage'),
           },
           {
+            path: 'calendar',
+            lazy: () => import('@/features/calendar/CalendarPage'),
+          },
+          {
             path: 'leave',
             lazy: () => import('@/features/leaves/LeavePage'),
           },

@@ -35,6 +35,7 @@ const navItems: NavItem[] = [
   { path: '/courses', icon: BookOpen, label: 'navigation.courses' },
   { path: '/enrolment', icon: Calendar, label: 'navigation.enrollment', roles: ['Student', 'Teacher', 'HOD'] },
   { path: '/attendance', icon: UserCheck, label: 'navigation.attendance' },
+  { path: '/calendar', icon: Calendar, label: 'navigation.calendar' },
   { path: '/leave', icon: FileText, label: 'navigation.leaves' },
   { path: '/reports', icon: BarChart3, label: 'navigation.reports', roles: ['HOD', 'Principal', 'Admin'] },
   { path: '/admin', icon: Settings, label: 'navigation.admin', roles: ['Admin'] },

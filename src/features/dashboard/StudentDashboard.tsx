@@ -129,124 +129,233 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
         </div>
       </div>
 
-      {/* Academic Overview - Key Metrics */}
+      {/* Modern Statistics Cards - Inspired by SchoolHub */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-blue-200/50 dark:border-blue-800/30">
+        {/* Students Card - Purple Gradient */}
+        <Card className="border-0 bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Monthly Attendance</p>
-                <p className="text-3xl font-bold text-blue-600 mt-1">96.8%</p>
+                <div className="flex items-center space-x-2 mb-3">
+                  <TrendingUp className="h-4 w-4 text-white/80" />
+                  <span className="text-xs font-medium text-white/80">15%</span>
+                </div>
+                <p className="text-3xl font-bold mb-1">96.8%</p>
+                <p className="text-sm text-white/90 font-medium">Attendance</p>
               </div>
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                <CheckCircle className="h-6 w-6 text-blue-600" />
+              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <CheckCircle className="h-5 w-5 text-white" />
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-2">+2.3% from last month</p>
           </CardContent>
         </Card>
 
-        <Card className="border-emerald-200/50 dark:border-emerald-800/30">
+        {/* Teachers Card - Yellow Gradient */}
+        <Card className="border-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Enrolled Courses</p>
-                <p className="text-3xl font-bold text-emerald-600 mt-1">{enrolledCourses.length}</p>
+                <div className="flex items-center space-x-2 mb-3">
+                  <TrendingUp className="h-4 w-4 text-white/80" />
+                  <span className="text-xs font-medium text-white/80">3%</span>
+                </div>
+                <p className="text-3xl font-bold mb-1">{enrolledCourses.length}</p>
+                <p className="text-sm text-white/90 font-medium">Courses</p>
               </div>
-              <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
-                <BookOpen className="h-6 w-6 text-emerald-600" />
+              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <BookOpen className="h-5 w-5 text-white" />
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-2">7 core subjects total</p>
           </CardContent>
         </Card>
 
-        <Card className="border-amber-200/50 dark:border-amber-800/30">
+        {/* Staff Card - Blue Gradient */}
+        <Card className="border-0 bg-gradient-to-br from-blue-400 via-blue-500 to-indigo-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Unread Notices</p>
-                <p className="text-3xl font-bold text-amber-600 mt-1">{unreadMessages.length}</p>
+                <div className="flex items-center space-x-2 mb-3">
+                  <TrendingDown className="h-4 w-4 text-white/80" />
+                  <span className="text-xs font-medium text-white/80">3%</span>
+                </div>
+                <p className="text-3xl font-bold mb-1">{unreadMessages.length}</p>
+                <p className="text-sm text-white/90 font-medium">Messages</p>
               </div>
-              <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center">
-                <Bell className="h-6 w-6 text-amber-600" />
+              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <MessageSquare className="h-5 w-5 text-white" />
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-2">Including academic notices</p>
           </CardContent>
         </Card>
 
-        <Card className="border-red-200/50 dark:border-red-800/30">
+        {/* Awards Card - Green Gradient */}
+        <Card className="border-0 bg-gradient-to-br from-emerald-400 via-green-500 to-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Pending Tasks</p>
-                <p className="text-3xl font-bold text-red-600 mt-1">3</p>
+                <div className="flex items-center space-x-2 mb-3">
+                  <TrendingUp className="h-4 w-4 text-white/80" />
+                  <span className="text-xs font-medium text-white/80">5%</span>
+                </div>
+                <p className="text-3xl font-bold mb-1">B+</p>
+                <p className="text-sm text-white/90 font-medium">Grade Average</p>
               </div>
-              <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
-                <Clock className="h-6 w-6 text-red-600" />
+              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <Award className="h-5 w-5 text-white" />
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-2">Assignment deadlines</p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* 今日课表 - Today's Schedule */}
-        <Card className="border-blue-200/50 dark:border-blue-800/30">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
-              <Calendar className="h-5 w-5 mr-2 text-blue-600" />
-              Today's Schedule
-            </CardTitle>
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Weekly Schedule - Modern Calendar View */}
+        <Card className="lg:col-span-2 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">
+                Weekly Schedule
+              </CardTitle>
+              <div className="text-sm text-slate-500 dark:text-slate-400">
+                September 2024
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {classSchedule.slice(0, 3).map((class_, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                  <div>
-                    <p className="font-medium text-slate-900 dark:text-white text-sm">{class_.courseName}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{class_.time} • {class_.location}</p>
-                  </div>
-                  <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
-                    {class_.teacher}
-                  </div>
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-2 mb-4">
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+                <div key={day} className="text-center text-xs font-medium text-slate-500 dark:text-slate-400 py-2">
+                  {day}
                 </div>
               ))}
             </div>
-            <Link to="/courses" className="block mt-4">
-              <Button variant="outline" size="sm" className="w-full">
-                View Full Schedule
-              </Button>
-            </Link>
+            
+            {/* Schedule Blocks - Inspired by reference */}
+            <div className="grid grid-cols-5 gap-3 h-64">
+              {/* Monday */}
+              <div className="space-y-2">
+                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Math</div>
+                  <div className="text-white/80">Room 101</div>
+                </div>
+                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Science</div>
+                  <div className="text-white/80">Room 201</div>
+                </div>
+              </div>
+              
+              {/* Tuesday */}
+              <div className="space-y-2">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>English</div>
+                  <div className="text-white/80">Room 102</div>
+                </div>
+                <div className="bg-gradient-to-br from-purple-400 to-purple-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>History</div>
+                  <div className="text-white/80">Room 301</div>
+                </div>
+              </div>
+              
+              {/* Wednesday */}
+              <div className="space-y-2">
+                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Science</div>
+                  <div className="text-white/80">Lab 1</div>
+                </div>
+                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Math</div>
+                  <div className="text-white/80">Room 101</div>
+                </div>
+              </div>
+              
+              {/* Thursday */}
+              <div className="space-y-2">
+                <div className="bg-gradient-to-br from-purple-400 to-purple-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Art</div>
+                  <div className="text-white/80">Studio A</div>
+                </div>
+                <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>English</div>
+                  <div className="text-white/80">Room 102</div>
+                </div>
+              </div>
+              
+              {/* Friday */}
+              <div className="space-y-2">
+                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>PE</div>
+                  <div className="text-white/80">Gym</div>
+                </div>
+                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
+                  <div>Math</div>
+                  <div className="text-white/80">Room 101</div>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
-        {/* 教务通知 - School Announcements */}
-        <Card className="border-amber-200/50 dark:border-amber-800/30">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
-              <Bell className="h-5 w-5 mr-2 text-amber-600" />
-              School Announcements
-            </CardTitle>
+        {/* Messages - Modern Message List */}
+        <Card className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">
+                Messages
+              </CardTitle>
+              <Link to="/messages" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                View All
+              </Link>
+            </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            {/* Message Items - Inspired by reference design */}
             <div className="space-y-3">
-              <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border-l-4 border-amber-400">
-                <p className="text-sm font-medium text-slate-900 dark:text-white">Mid-term Examination Schedule</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">April 15-19, 2024</p>
+              <div className="flex items-start space-x-3 p-3 bg-slate-50/50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  DR
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold text-slate-900 dark:text-white text-sm">Dr. Lila Ramirez</p>
+                    <span className="text-xs text-slate-500">9:00 AM</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    Please ensure the monthly attendance report is accurate before the April 30th deadline.
+                  </p>
+                </div>
               </div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-400">
-                <p className="text-sm font-medium text-slate-900 dark:text-white">Course Selection Open</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Deadline: March 30 for next semester</p>
+
+              <div className="flex items-start space-x-3 p-3 bg-slate-50/50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  HM
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold text-slate-900 dark:text-white text-sm">Ms. Heather Morris</p>
+                    <span className="text-xs text-slate-500">10:15 AM</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    Don't forget the staff training on digital tools scheduled for May 5th at 3 PM.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3 p-3 bg-slate-50/50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  CJ
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold text-slate-900 dark:text-white text-sm">Mr. Carl Jenkins</p>
+                    <span className="text-xs text-slate-500">2:00 PM</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    Budget review meeting for the next fiscal year is on Monday.
+                  </p>
+                </div>
               </div>
             </div>
-            <Link to="/messages" className="block mt-4">
-              <Button variant="outline" size="sm" className="w-full">
-                View All Notices ({unreadMessages.length} unread)
-              </Button>
-            </Link>
           </CardContent>
         </Card>
 
@@ -579,6 +688,117 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
                 Detailed Learning Report
               </Button>
             </Link>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Modern Attendance Visualization - SchoolHub Style */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Attendance Chart */}
+        <Card className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">
+                Weekly Attendance
+              </CardTitle>
+              <div className="flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-slate-600 dark:text-slate-400">Present</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-slate-600 dark:text-slate-400">Absent</span>
+                </div>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {/* Attendance Grid - Visual Calendar Style */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-slate-500 dark:text-slate-400">
+                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+                  <div key={day} className="py-2">{day}</div>
+                ))}
+              </div>
+              
+              <div className="grid grid-cols-7 gap-2">
+                {Array.from({length: 14}, (_, i) => {
+                  const isPresent = Math.random() > 0.1;
+                  const dayNumber = (i % 7) + 15;
+                  return (
+                    <div key={i} className="aspect-square relative">
+                      <div className={`w-full h-full rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer ${
+                        isPresent 
+                          ? 'bg-blue-500 hover:bg-blue-600 text-white' 
+                          : 'bg-red-500 hover:bg-red-600 text-white'
+                      }`}>
+                        <div className="text-center">
+                          <div className="text-xs font-bold">{dayNumber}</div>
+                          {isPresent ? (
+                            <CheckCircle className="h-3 w-3 mx-auto mt-1" />
+                          ) : (
+                            <AlertCircle className="h-3 w-3 mx-auto mt-1" />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
+              <div className="text-center pt-4 border-t border-slate-200 dark:border-slate-700">
+                <div className="text-lg font-bold text-blue-600">95%</div>
+                <div className="text-xs text-slate-500">Overall Attendance Rate</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Performance Chart */}
+        <Card className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-lg">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">
+              Academic Performance
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {/* Subject Grades */}
+              <div className="space-y-4">
+                {[
+                  { subject: 'Mathematics', grade: 'A-', color: 'from-blue-400 to-blue-500', score: 88 },
+                  { subject: 'English', grade: 'B+', color: 'from-emerald-400 to-emerald-500', score: 82 },
+                  { subject: 'Science', grade: 'A', color: 'from-purple-400 to-purple-500', score: 92 },
+                  { subject: 'History', grade: 'B', color: 'from-orange-400 to-orange-500', score: 78 }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center text-white font-bold text-sm`}>
+                      {item.grade}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-medium text-slate-900 dark:text-white">{item.subject}</span>
+                        <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{item.score}</span>
+                      </div>
+                      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                        <div 
+                          className={`bg-gradient-to-r ${item.color} h-2 rounded-full transition-all duration-500`}
+                          style={{width: `${item.score}%`}}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="text-center pt-4 border-t border-slate-200 dark:border-slate-700">
+                <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  B+
+                </div>
+                <div className="text-xs text-slate-500">Semester Average</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
