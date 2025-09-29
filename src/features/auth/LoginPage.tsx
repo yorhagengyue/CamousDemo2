@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuthStore } from '@/stores/authStore';
 import type { Role } from '@/types';
-import { GraduationCap, Globe, Moon, Sun, ChevronDown, Info, Shield } from 'lucide-react';
+import { Globe, Moon, Sun, ChevronDown, Info, Shield } from 'lucide-react';
 import { useThemeStore } from '@/stores/themeStore';
 import { PrivacyConsentModal } from './PrivacyConsentModal';
 
@@ -93,231 +93,248 @@ export const LoginPage = () => {
   const roles: Role[] = ['Student', 'Teacher', 'HOD', 'Principal', 'Admin'];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-      {/* Demo Badge */}
-      <div className="absolute top-4 left-4 z-50">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-200 border border-indigo-200 dark:border-indigo-700">
-          <Info className="w-3 h-3 mr-1" />
-          Demo Mode
-        </div>
-      </div>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-blue-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950">
 
-      {/* Top Right Controls */}
-      <div className="absolute top-4 right-4 z-50 flex items-center space-x-2">
+      {/* Top Right Controls - Enhanced */}
+      <div className="absolute top-6 right-6 z-50 flex items-center space-x-3">
         <Button 
           variant="ghost" 
           size="sm" 
           onClick={toggleLanguage} 
-          className="h-10 px-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/90 dark:hover:bg-slate-700/90 transition-all duration-200"
+          className="h-10 px-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/60 hover:bg-white dark:hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow-md text-slate-700 dark:text-slate-300"
         >
-          <Globe className="h-4 w-4 mr-2" />
+          <Globe className="h-4 w-4 mr-2" strokeWidth={1.5} />
           <span className="text-sm font-medium">
-            {i18n.language === 'en' ? 'EN' : '中文'}
+            {i18n.language === 'en' ? 'English' : '中文'}
           </span>
         </Button>
         <Button 
           variant="ghost" 
           size="sm" 
           onClick={toggleTheme} 
-          className="h-10 w-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 hover:bg-white/90 dark:hover:bg-slate-700/90 transition-all duration-200"
+          className="h-10 w-10 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/60 hover:bg-white dark:hover:bg-slate-700 transition-all duration-300 shadow-sm hover:shadow-md text-slate-700 dark:text-slate-300"
         >
-          {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          {theme === 'light' ? <Moon className="h-4 w-4" strokeWidth={1.5} /> : <Sun className="h-4 w-4" strokeWidth={1.5} />}
         </Button>
       </div>
 
-      {/* Background decoration - reduced opacity */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse dark:opacity-20"></div>
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse delay-1000 dark:opacity-20"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse delay-500 dark:opacity-20"></div>
+      {/* Refined Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-blue-500/8 via-indigo-400/4 to-transparent blur-3xl dark:from-blue-400/6 dark:via-indigo-400/3"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-violet-500/6 via-purple-400/3 to-transparent blur-3xl dark:from-violet-400/4 dark:via-purple-400/2"></div>
       </div>
       
-      {/* Main Container - 12 column grid */}
-      <div className="max-w-7xl mx-auto px-6 py-16 lg:grid lg:grid-cols-12 lg:gap-10 min-h-screen">
+      {/* Main Container - Enhanced 12 column grid */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24 lg:grid lg:grid-cols-12 lg:gap-16 min-h-screen">
         
         {/* Left side - Branding & Features (lg:col-span-6) */}
         <div className="lg:col-span-6 flex flex-col justify-center relative z-10 mb-16 lg:mb-0">
-          {/* Brand Header */}
-          <div className="mb-12">
-            <div className="flex items-center mb-6">
-              <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mr-4 shadow-[0_20px_60px_rgba(2,6,23,.12)]">
-                <GraduationCap className="h-8 w-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white">
-                  Digital Campus
-                </h1>
-                <h2 className="text-xl text-slate-600 dark:text-slate-300 font-medium mt-1">
-                  Unified Portal Login
-                </h2>
+          {/* Enhanced Brand Header with layered design */}
+          <div className="mb-20">
+            {/* Government Brand Identity */}
+            <div className="mb-10">
+              <div className="flex items-center mb-8">
+                <div className="w-20 h-20 bg-blue-600 rounded-lg flex items-center justify-center mr-6 shadow-lg border border-blue-700/20">
+                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center">
+                    <div className="w-6 h-6 bg-blue-600 rounded-sm"></div>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight tracking-normal mb-2">
+                    Digital Campus
+                  </h1>
+                  <div className="flex items-center space-x-2">
+                    <div className="h-px w-8 bg-blue-600"></div>
+                    <h2 className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 font-normal">
+                      Ministry of Education, Singapore
+                    </h2>
+                  </div>
+                </div>
               </div>
             </div>
-            <p className="text-lg text-slate-700 dark:text-slate-300 max-w-lg leading-relaxed">
-              Secure access to Singapore's integrated digital campus ecosystem with identity verification and role-based permissions.
-            </p>
+
+            {/* Government Mission Statement */}
+            <div className="space-y-6">
+              <div className="border-l-4 border-blue-600 pl-6">
+                <p className="text-xl lg:text-2xl text-slate-800 dark:text-slate-200 max-w-2xl leading-relaxed font-normal">
+                  Secure, unified access to Singapore's national digital education infrastructure.
+                </p>
+              </div>
+              
+              <div className="space-y-4 mt-8">
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200">Centralized Authentication</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Single sign-on access across all MOE digital services and educational platforms
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200">Role-based Permissions</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Appropriate access levels for students, educators, and administrative staff
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200">Comprehensive Management</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      Integrated tools for curriculum delivery, assessment, and administrative functions
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Demo Features Card - Glass effect */}
-          <div className="bg-white/85 dark:bg-slate-800/85 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-slate-700/50 shadow-[0_20px_60px_rgba(2,6,23,.12)] max-w-lg">
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-              Demo Features
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-center text-slate-700 dark:text-slate-300">
-                <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 flex-shrink-0"></div>
-                <span className="text-sm">Multi-role access control system</span>
-              </li>
-              <li className="flex items-center text-slate-700 dark:text-slate-300">
-                <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 flex-shrink-0"></div>
-                <span className="text-sm">Course management & enrollment</span>
-              </li>
-              <li className="flex items-center text-slate-700 dark:text-slate-300">
-                <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 flex-shrink-0"></div>
-                <span className="text-sm">Attendance & leave tracking</span>
-              </li>
-              <li className="flex items-center text-slate-700 dark:text-slate-300">
-                <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 flex-shrink-0"></div>
-                <span className="text-sm">Real-time messaging & analytics</span>
-              </li>
-            </ul>
+          {/* Government Notice Card */}
+          <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-lg rounded-2xl p-6 border border-slate-200/60 dark:border-slate-700/40 shadow-lg max-w-lg">
+            <div className="space-y-4">
+              <div className="pb-4 border-b border-slate-200/50 dark:border-slate-700/50">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                  Official Government Portal
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  This is an official digital service provided by the Ministry of Education, Singapore.
+                </p>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-800 dark:text-slate-200">Secure Access</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">Government-grade security standards</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-800 dark:text-slate-200">Data Protection</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">PDPA compliance and privacy protection</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-800 dark:text-slate-200">24/7 Availability</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">Round-the-clock system accessibility</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
+                <div className="text-center">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    For technical support, contact MOE IT Service Desk
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right side - Login Card (lg:col-span-5 lg:col-start-8) */}
+        {/* Right side - Enhanced Login Card (lg:col-span-5 lg:col-start-8) */}
         <div className="lg:col-span-5 lg:col-start-8 flex items-center justify-center relative z-10">
-          <div className="w-full max-w-md">
-            <Card className="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/50 shadow-[0_20px_60px_rgba(2,6,23,.12)] rounded-2xl transform transition-all duration-200 hover:translate-y-[-2px]">
-              <CardHeader className="text-center pb-6">
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">
-                  Welcome Back
+          <div className="w-full max-w-lg">
+            <Card className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200/60 dark:border-slate-700/40 shadow-[0_32px_64px_rgba(2,6,23,0.12)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.4)] rounded-3xl transform transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_40px_80px_rgba(2,6,23,0.16)]">
+              <CardHeader className="text-center pb-8 pt-10">
+                <CardTitle className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  Sign In
                 </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400 mt-2">
-                  Choose your identity provider to continue
+                <CardDescription className="text-slate-600 dark:text-slate-400 mt-3 text-base leading-relaxed">
+                  Access your digital campus account securely
                 </CardDescription>
               </CardHeader>
               
-              <CardContent className="space-y-6">
-                {/* Segmented Control for Role Selection */}
-                <div className="space-y-3">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                    Demo Role Selection
-                  </label>
-                  <div className="grid grid-cols-3 gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl">
-                    {['Student', 'Teacher', 'HOD'].map((role) => (
-                      <button
-                        key={role}
-                        onClick={() => setSelectedRole(role as Role)}
-                        className={`px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500/60 ${
-                          selectedRole === role
-                            ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                        }`}
-                      >
-                        {role}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl">
-                    {['Principal', 'Admin'].map((role) => (
-                      <button
-                        key={role}
-                        onClick={() => setSelectedRole(role as Role)}
-                        className={`px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500/60 ${
-                          selectedRole === role
-                            ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                        }`}
-                      >
-                        {role}
-                      </button>
-                    ))}
+              <CardContent className="px-10 pb-10 space-y-8">
+
+                {/* Welcome Message */}
+                <div className="text-center space-y-3">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Sign in with your institutional account or government-issued digital identity
+                  </p>
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">Secure • Fast • Reliable</span>
+                    <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
                   </div>
                 </div>
 
-                {/* OR Divider */}
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-slate-200 dark:border-slate-700"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white dark:bg-slate-900 text-slate-500">Continue with</span>
-                  </div>
-                </div>
-
-                {/* SSO Providers */}
-                <div className="space-y-3">
-                  {/* Google Button */}
+                {/* Enhanced SSO Providers */}
+                <div className="space-y-4">
+                  {/* Google Button - Enhanced */}
                   <Button
                     variant="outline"
-                    className="w-full h-12 bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500/60 hover:scale-[0.98]"
+                    className="w-full h-14 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/60 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500/60 active:scale-[0.99] shadow-sm hover:shadow-md rounded-2xl"
                     onClick={() => handleProviderLogin('Google')}
                     disabled={isLoading}
                   >
-                    <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 mr-4" viewBox="0 0 24 24">
                       <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                       <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                       <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                       <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                     </svg>
-                    <span className="font-medium text-slate-700 dark:text-slate-300">Continue with Google</span>
+                    <span className="font-semibold text-slate-700 dark:text-slate-300 text-base">Sign in with Google</span>
                   </Button>
 
-                  {/* Singpass Button */}
+                  {/* Singpass Button - Enhanced */}
                   <Button
                     variant="outline"
-                    className="w-full h-12 bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500/60 hover:scale-[0.98]"
+                    className="w-full h-14 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white border-slate-700 dark:border-slate-600 hover:border-slate-600 dark:hover:border-slate-500 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-slate-500/60 active:scale-[0.99] shadow-lg hover:shadow-xl rounded-2xl"
                     onClick={() => handleProviderLogin('Singpass')}
                     disabled={isLoading}
                   >
-                    <div className="w-6 h-6 mr-3 bg-white rounded flex items-center justify-center">
-                      <span className="text-red-600 text-xs font-bold">SP</span>
-                    </div>
-                    <span className="font-medium">Continue with Singpass</span>
+                    <span className="font-semibold text-base">Sign in with Singpass</span>
                   </Button>
                 </div>
 
-                {/* Privacy Notice */}
-                <div className="flex items-start space-x-2 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
-                  <Shield className="w-4 h-4 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Only used for identity verification. No personal data will be accessed or stored.
-                  </p>
-                </div>
-
-                {/* Collapsible Demo Info */}
-                <div>
-                  <button
-                    onClick={() => setShowDemoInfo(!showDemoInfo)}
-                    className="flex items-center justify-between w-full text-left p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
-                  >
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                      Demo Accounts
-                    </span>
-                    <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${showDemoInfo ? 'rotate-180' : ''}`} />
-                  </button>
-                  
-                  {showDemoInfo && (
-                    <div className="mt-2 p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700/50 transform transition-all duration-200">
-                      <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-2">
-                        <li><strong className="text-slate-900 dark:text-white">Student:</strong> Alice Tan (S3-01)</li>
-                        <li><strong className="text-slate-900 dark:text-white">Teacher:</strong> Mr. Lee Wei Ming</li>
-                        <li><strong className="text-slate-900 dark:text-white">HOD:</strong> Ms. Ong Li Hua</li>
-                        <li><strong className="text-slate-900 dark:text-white">Principal:</strong> Dr. Lim Boon Keng</li>
-                        <li><strong className="text-slate-900 dark:text-white">Admin:</strong> Admin Bot</li>
-                      </ul>
+                {/* Enhanced Security Notice */}
+                <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/80 dark:from-slate-800/50 dark:to-blue-900/20 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/40">
+                  <div className="text-center space-y-3">
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Secure Authentication</h4>
                     </div>
-                  )}
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
+                      Your identity is verified through Singapore's trusted digital identity infrastructure. 
+                      All sessions are encrypted and monitored for security.
+                    </p>
+                    <div className="flex items-center justify-center space-x-4 text-xs text-slate-500 dark:text-slate-400 pt-2">
+                      <span className="flex items-center space-x-1">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                        <span>SSL Encrypted</span>
+                      </span>
+                      <span className="flex items-center space-x-1">
+                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                        <span>NRIC Verified</span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Footer Links */}
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <div className="flex justify-center space-x-4 text-xs">
-                    <a href="#" className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Privacy Policy</a>
-                    <span className="text-slate-300 dark:text-slate-600">•</span>
-                    <a href="#" className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Terms of Service</a>
-                  </div>
-                  <div className="flex justify-center mt-2">
-                    <span className="text-xs text-slate-400">Powered by GovTech Singapore</span>
+                {/* Enhanced Footer */}
+                <div className="pt-6 border-t border-slate-200/60 dark:border-slate-700/40">
+                  <div className="text-center space-y-3">
+                    <div className="flex justify-center space-x-6 text-xs">
+                      <a href="#" className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Privacy Policy</a>
+                      <a href="#" className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Terms of Service</a>
+                      <a href="#" className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Help Center</a>
+                    </div>
+                    <div className="flex justify-center">
+                      <span className="text-xs text-slate-400 font-medium">Government Technology Agency</span>
+                    </div>
                   </div>
                 </div>
               </CardContent>
