@@ -14,7 +14,11 @@ import {
   TrendingDown,
   Award,
   Target,
-  Bell
+  Bell,
+  User as UserIcon,
+  GraduationCap,
+  ClipboardList,
+  BarChart3
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -99,144 +103,224 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
   const { quickStats, upcomingDeadlines, classSchedule, recentActivities } = additionalData;
 
   return (
-    <div className="space-y-6">
-      {/* Quick Stats Row */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {quickStats.map((stat, index) => {
-          const TrendIcon = stat.trend === 'up' ? TrendingUp : TrendingDown;
-          const colorClasses = {
-            green: 'text-green-600 bg-green-50',
-            red: 'text-red-600 bg-red-50', 
-            yellow: 'text-yellow-600 bg-yellow-50',
-            blue: 'text-blue-600 bg-blue-50'
-          }[stat.color];
-          
-          return (
-            <Card key={index} className="card-hover">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.label}</p>
-                    <p className="text-2xl font-bold mt-1">{stat.value}</p>
-                  </div>
-                  <div className={`p-2 rounded-lg ${colorClasses}`}>
-                    <TrendIcon className="h-4 w-4" />
-                  </div>
-                </div>
-                <div className="flex items-center mt-2">
-                  <TrendIcon className={`h-3 w-3 mr-1 ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`} />
-                  <span className={`text-xs font-medium ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
-                    {stat.change}
-                  </span>
-                  <span className="text-xs text-gray-500 ml-1">vs last week</span>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+    <div className="space-y-8">
+      {/* Student Profile Header */}
+      <div className="bg-gradient-to-r from-blue-50 to-slate-50 dark:from-blue-950/30 dark:to-slate-900/50 rounded-2xl p-6 border border-blue-200/30 dark:border-blue-800/20">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              {user.name}
+            </h1>
+            <div className="flex items-center space-x-4 text-sm text-slate-600 dark:text-slate-400">
+              <span>Class: {user.className || 'S3-01'}</span>
+              <span>•</span>
+              <span>Student ID: {user.id}</span>
+              <span>•</span>
+              <span>Grade: {user.grade || 'Secondary 3'}</span>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">School Status</div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Present</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Academic Overview - Key Metrics */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="border-blue-200/50 dark:border-blue-800/30">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Monthly Attendance</p>
+                <p className="text-3xl font-bold text-blue-600 mt-1">96.8%</p>
+              </div>
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                <CheckCircle className="h-6 w-6 text-blue-600" />
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-2">+2.3% from last month</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-emerald-200/50 dark:border-emerald-800/30">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Enrolled Courses</p>
+                <p className="text-3xl font-bold text-emerald-600 mt-1">{enrolledCourses.length}</p>
+              </div>
+              <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
+                <BookOpen className="h-6 w-6 text-emerald-600" />
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-2">7 core subjects total</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-amber-200/50 dark:border-amber-800/30">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Unread Notices</p>
+                <p className="text-3xl font-bold text-amber-600 mt-1">{unreadMessages.length}</p>
+              </div>
+              <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center">
+                <Bell className="h-6 w-6 text-amber-600" />
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-2">Including academic notices</p>
+          </CardContent>
+        </Card>
+
+        <Card className="border-red-200/50 dark:border-red-800/30">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Pending Tasks</p>
+                <p className="text-3xl font-bold text-red-600 mt-1">3</p>
+              </div>
+              <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
+                <Clock className="h-6 w-6 text-red-600" />
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-2">Assignment deadlines</p>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Today's Classes */}
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('dashboard.todayClasses')}
+        {/* 今日课表 - Today's Schedule */}
+        <Card className="border-blue-200/50 dark:border-blue-800/30">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <Calendar className="h-5 w-5 mr-2 text-blue-600" />
+              Today's Schedule
             </CardTitle>
-            <Calendar className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{todayAttendance.length}</div>
-            <p className="text-xs text-gray-500">
-              {todayAttendance.filter(a => a.status === 'present').length} attended
-            </p>
-            <div className="mt-4">
-              <Link to="/attendance">
-                <Button variant="ghost" size="sm" className="w-full justify-between">
-                  View Details
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
+            <div className="space-y-3">
+              {classSchedule.slice(0, 3).map((class_, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-slate-900 dark:text-white text-sm">{class_.courseName}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{class_.time} • {class_.location}</p>
+                  </div>
+                  <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                    {class_.teacher}
+                  </div>
+                </div>
+              ))}
             </div>
+            <Link to="/courses" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                View Full Schedule
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
-        {/* Unread Messages */}
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('dashboard.unreadMessages')}
+        {/* 教务通知 - School Announcements */}
+        <Card className="border-amber-200/50 dark:border-amber-800/30">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <Bell className="h-5 w-5 mr-2 text-amber-600" />
+              School Announcements
             </CardTitle>
-            <MessageSquare className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{unreadMessages.length}</div>
-            <p className="text-xs text-gray-500">
-              {messages.length} total messages
-            </p>
-            <div className="mt-4">
-              <Link to="/messages">
-                <Button variant="ghost" size="sm" className="w-full justify-between">
-                  Read Messages
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
+            <div className="space-y-3">
+              <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border-l-4 border-amber-400">
+                <p className="text-sm font-medium text-slate-900 dark:text-white">Mid-term Examination Schedule</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">April 15-19, 2024</p>
+              </div>
+              <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-400">
+                <p className="text-sm font-medium text-slate-900 dark:text-white">Course Selection Open</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Deadline: March 30 for next semester</p>
+              </div>
             </div>
+            <Link to="/messages" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                View All Notices ({unreadMessages.length} unread)
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
-        {/* Course Enrollment */}
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              My Courses
+        {/* 成绩管理 - Grade Management */}
+        <Card className="border-emerald-200/50 dark:border-emerald-800/30">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <Award className="h-5 w-5 mr-2 text-emerald-600" />
+              Academic Performance
             </CardTitle>
-            <BookOpen className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{enrolledCourses.length}</div>
-            <p className="text-xs text-gray-500">
-              courses this semester
-            </p>
-            <div className="mt-4">
-              <Link to="/courses">
-                <Button variant="ghost" size="sm" className="w-full justify-between">
-                  View Courses
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
+            <div className="space-y-4">
+              <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
+                <div className="text-2xl font-bold text-emerald-600 mb-1">B+</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">Semester Average</div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Mathematics</span>
+                  <span className="font-medium text-slate-900 dark:text-white">A-</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">English</span>
+                  <span className="font-medium text-slate-900 dark:text-white">B+</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Science</span>
+                  <span className="font-medium text-slate-900 dark:text-white">A</span>
+                </div>
+              </div>
             </div>
+            <Link to="/reports" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                View Grade Details
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
-        {/* Leave Status */}
-        <Card className="card-hover">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('dashboard.leaveStatus')}
+        {/* 选课管理 - Course Selection */}
+        <Card className="border-purple-200/50 dark:border-purple-800/30">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <BookOpen className="h-5 w-5 mr-2 text-purple-600" />
+              Course Selection
             </CardTitle>
-            <FileText className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="flex items-center space-x-2">
-              <div className="text-2xl font-bold">{pendingLeaves.length}</div>
-              {pendingLeaves.length > 0 ? (
-                <Clock className="h-4 w-4 text-yellow-500" />
-              ) : (
-                <CheckCircle className="h-4 w-4 text-green-500" />
-              )}
+            <div className="space-y-4">
+              <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600 mb-1">{enrolledCourses.length}/7</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">Selected/Total Courses</div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Core Subjects</span>
+                  <span className="font-medium text-slate-900 dark:text-white">5/5</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Electives</span>
+                  <span className="font-medium text-slate-900 dark:text-white">2/2</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Status</span>
+                  <span className="text-green-600 font-medium text-sm">Completed</span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-gray-500">
-              {pendingLeaves.length > 0 ? 'pending approval' : 'no pending leaves'}
-            </p>
-            <div className="mt-4">
-              <Link to="/leave">
-                <Button variant="ghost" size="sm" className="w-full justify-between">
-                  Manage Leaves
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
+            <Link to="/enrolment" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                Manage Selection
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
@@ -341,29 +425,158 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
           </CardContent>
         </Card>
         
-        {/* Quick Actions */}
-        <Card>
+        {/* 快捷操作 - Quick Actions */}
+        <Card className="border-slate-200/50 dark:border-slate-700/30">
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Common tasks and shortcuts</CardDescription>
+            <CardTitle className="text-xl font-semibold text-slate-900 dark:text-white flex items-center">
+              <ClipboardList className="h-5 w-5 mr-2 text-slate-600" />
+              Quick Actions
+            </CardTitle>
+            <CardDescription className="text-slate-600 dark:text-slate-400">
+              Common functions and services
+            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
-            <Link to="/leave" className="block">
-              <Button variant="outline" size="sm" className="w-full justify-start">
-                <FileText className="h-4 w-4 mr-2" />
-                Apply for Leave
+          <CardContent className="space-y-3">
+            <Link to="/leaves" className="block">
+              <Button variant="outline" size="sm" className="w-full justify-start h-12 text-left">
+                <FileText className="h-4 w-4 mr-3 text-orange-600" />
+                <div>
+                  <div className="font-medium">Apply for Leave</div>
+                  <div className="text-xs text-slate-500">Sick leave, personal leave</div>
+                </div>
               </Button>
             </Link>
-            <Link to="/courses" className="block">
-              <Button variant="outline" size="sm" className="w-full justify-start">
-                <BookOpen className="h-4 w-4 mr-2" />
-                Browse Courses
+            <Link to="/enrolment" className="block">
+              <Button variant="outline" size="sm" className="w-full justify-start h-12 text-left">
+                <BookOpen className="h-4 w-4 mr-3 text-purple-600" />
+                <div>
+                  <div className="font-medium">Course Management</div>
+                  <div className="text-xs text-slate-500">View and modify selections</div>
+                </div>
+              </Button>
+            </Link>
+            <Link to="/attendance" className="block">
+              <Button variant="outline" size="sm" className="w-full justify-start h-12 text-left">
+                <CheckCircle className="h-4 w-4 mr-3 text-blue-600" />
+                <div>
+                  <div className="font-medium">Attendance Records</div>
+                  <div className="text-xs text-slate-500">View attendance status</div>
+                </div>
               </Button>
             </Link>
             <Link to="/messages" className="block">
-              <Button variant="outline" size="sm" className="w-full justify-start">
-                <MessageSquare className="h-4 w-4 mr-2" />
-                Send Message
+              <Button variant="outline" size="sm" className="w-full justify-start h-12 text-left">
+                <MessageSquare className="h-4 w-4 mr-3 text-amber-600" />
+                <div>
+                  <div className="font-medium">School Messages</div>
+                  <div className="text-xs text-slate-500">Notices and announcements</div>
+                </div>
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* 政府中学专属功能区 - Government Secondary School Features */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* 学生数据档案 - Student Data Profile */}
+        <Card className="border-blue-200/50 dark:border-blue-800/30">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <UserIcon className="h-5 w-5 mr-2 text-blue-600" />
+              Student Profile
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-sm text-slate-600 dark:text-slate-400">Enrollment Status</span>
+                <span className="text-sm font-medium text-green-600">Active</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-slate-600 dark:text-slate-400">Admission Year</span>
+                <span className="text-sm font-medium text-slate-900 dark:text-white">2022</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-slate-600 dark:text-slate-400">Parent Contact</span>
+                <span className="text-sm font-medium text-blue-600">Linked</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-slate-600 dark:text-slate-400">Emergency Contact</span>
+                <span className="text-sm font-medium text-slate-900 dark:text-white">Ms. Zhang</span>
+              </div>
+            </div>
+            <Link to="/profiles/students" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                View Detailed Profile
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* 教师资源 - Teacher Resources */}
+        <Card className="border-indigo-200/50 dark:border-indigo-800/30">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <GraduationCap className="h-5 w-5 mr-2 text-indigo-600" />
+              Learning Resources
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
+                <p className="font-medium text-slate-900 dark:text-white text-sm">Mathematics Materials</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Mr. Lee • 15 files</p>
+              </div>
+              <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <p className="font-medium text-slate-900 dark:text-white text-sm">English Listening Materials</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Ms. Wang • 8 audio files</p>
+              </div>
+              <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <p className="font-medium text-slate-900 dark:text-white text-sm">Science Lab Instructions</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Dr. Chen • 3 videos</p>
+              </div>
+            </div>
+            <Link to="/courses" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                Browse All Resources
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* 数据大屏入口 - Data Dashboard */}
+        <Card className="border-green-200/50 dark:border-green-800/30">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+              <BarChart3 className="h-5 w-5 mr-2 text-green-600" />
+              Learning Analytics
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <div className="text-lg font-bold text-green-600 mb-1">87.5%</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">Monthly Learning Progress</div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Assignment Submission</span>
+                  <span className="font-medium text-green-600">98%</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Class Participation</span>
+                  <span className="font-medium text-blue-600">Good</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-600 dark:text-slate-400">Study Hours</span>
+                  <span className="font-medium text-slate-900 dark:text-white">28.5h</span>
+                </div>
+              </div>
+            </div>
+            <Link to="/reports" className="block mt-4">
+              <Button variant="outline" size="sm" className="w-full">
+                Detailed Learning Report
               </Button>
             </Link>
           </CardContent>
