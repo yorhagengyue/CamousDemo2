@@ -1,44 +1,44 @@
 # Digital Campus Demo - 数字化校园前端演示系统
 
-> A comprehensive frontend demo for digital campus management system with role-based access control, built with React, TypeScript, and modern web technologies.
+> 一个完整的数字化校园管理系统前端演示，支持多角色权限控制，使用React、TypeScript和现代Web技术构建。
 
-## 🎯 Project Overview
+## 🎯 项目概述
 
-This is a complete frontend demonstration of a digital campus management system that showcases:
+这是一个完整的数字化校园管理系统前端演示，展示以下功能：
 
-- **Multi-role Access Control**: Student, Teacher, HOD, Principal, and Admin roles
-- **Modern UI/UX**: Responsive design with dark/light theme support
-- **Internationalization**: English and Chinese language support
-- **Mock API System**: Complete backend simulation using MSW (Mock Service Worker)
-- **Real-time Features**: Messaging, notifications, and dashboard analytics
+- **多角色权限控制**: 学生、教师、教研组长、校长和管理员角色
+- **现代化UI/UX**: 响应式设计，支持深色/浅色主题
+- **国际化支持**: 英文和中文语言支持
+- **模拟API系统**: 使用MSW (Mock Service Worker) 完整模拟后端
+- **实时功能**: 消息、通知和仪表板分析
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Prerequisites
+### 环境要求
 
 - Node.js 18+ 
-- npm or yarn
+- npm 或 yarn
 
-### Installation
+### 安装步骤
 
-1. **Clone the repository**
+1. **克隆仓库**
    ```bash
    git clone https://github.com/yorhagengyue/CamousDemo2.git
    cd CamousDemo2
    ```
 
-2. **Install dependencies**
+2. **安装依赖**
    ```bash
    npm install
    ```
 
-3. **Start development server**
+3. **启动开发服务器**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
+4. **打开浏览器**
+   访问 `http://localhost:5173`
 
 ## 🎭 Demo Login
 
