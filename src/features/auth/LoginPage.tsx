@@ -134,9 +134,44 @@ export const LoginPage = () => {
             {/* Government Brand Identity */}
             <div className="mb-10">
               <div className="flex items-center mb-8">
-                <div className="w-20 h-20 bg-blue-600 rounded-lg flex items-center justify-center mr-6 shadow-lg border border-blue-700/20">
-                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center">
-                    <div className="w-6 h-6 bg-blue-600 rounded-sm"></div>
+                <div className="relative w-20 h-20 mr-6">
+                  {/* Main Logo Container */}
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-[0_8px_32px_rgba(37,99,235,0.3)] border border-blue-500/20">
+                    {/* Inner Design - Education Symbol */}
+                    <div className="relative">
+                      {/* Book/Building Icon */}
+                      <div className="w-12 h-12 relative">
+                        {/* Base structure */}
+                        <div className="absolute inset-0 bg-white/20 rounded-lg"></div>
+                        
+                        {/* Digital Campus Icon - Layered Design */}
+                        <div className="absolute inset-2 space-y-1">
+                          {/* Top section - representing digital/screen */}
+                          <div className="h-2 bg-white rounded-sm opacity-90"></div>
+                          {/* Middle sections - representing building floors/levels */}
+                          <div className="flex space-x-1">
+                            <div className="flex-1 h-1.5 bg-white/80 rounded-sm"></div>
+                            <div className="flex-1 h-1.5 bg-white/60 rounded-sm"></div>
+                          </div>
+                          <div className="flex space-x-1">
+                            <div className="flex-1 h-1.5 bg-white/60 rounded-sm"></div>
+                            <div className="flex-1 h-1.5 bg-white/80 rounded-sm"></div>
+                          </div>
+                          {/* Bottom section - foundation */}
+                          <div className="h-1 bg-white/90 rounded-sm"></div>
+                        </div>
+                        
+                        {/* Digital accent - small indicator */}
+                        <div className="absolute top-0 right-0 w-2 h-2 bg-emerald-400 rounded-full shadow-sm"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Official badge */}
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-blue-50">
+                    <div className="w-3 h-3 bg-red-600 rounded-full flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex-1">
