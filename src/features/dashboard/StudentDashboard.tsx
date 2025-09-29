@@ -129,79 +129,79 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
         </div>
       </div>
 
-      {/* Modern Statistics Cards - Inspired by SchoolHub */}
+      {/* Modern Statistics Cards - Soft Color Palette */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {/* Students Card - Purple Gradient */}
-        <Card className="border-0 bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        {/* Attendance Card - Soft Purple */}
+        <Card className="border-0 bg-gradient-to-br from-purple-200/60 via-purple-300/60 to-purple-400/60 text-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center space-x-2 mb-3">
-                  <TrendingUp className="h-4 w-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/80">15%</span>
+                  <TrendingUp className="h-4 w-4 text-slate-700/80" />
+                  <span className="text-xs font-medium text-slate-700/80">15%</span>
                 </div>
                 <p className="text-3xl font-bold mb-1">96.8%</p>
-                <p className="text-sm text-white/90 font-medium">Attendance</p>
+                <p className="text-sm text-slate-700/90 font-medium">Attendance</p>
               </div>
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <CheckCircle className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 bg-white/30 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <CheckCircle className="h-5 w-5 text-slate-700" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Teachers Card - Yellow Gradient */}
-        <Card className="border-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        {/* Courses Card - Soft Yellow */}
+        <Card className="border-0 bg-gradient-to-br from-yellow-200/60 via-amber-300/60 to-orange-300/60 text-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center space-x-2 mb-3">
-                  <TrendingUp className="h-4 w-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/80">3%</span>
+                  <TrendingUp className="h-4 w-4 text-slate-700/80" />
+                  <span className="text-xs font-medium text-slate-700/80">3%</span>
                 </div>
                 <p className="text-3xl font-bold mb-1">{enrolledCourses.length}</p>
-                <p className="text-sm text-white/90 font-medium">Courses</p>
+                <p className="text-sm text-slate-700/90 font-medium">Courses</p>
               </div>
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <BookOpen className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 bg-white/30 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <BookOpen className="h-5 w-5 text-slate-700" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Staff Card - Blue Gradient */}
-        <Card className="border-0 bg-gradient-to-br from-blue-400 via-blue-500 to-indigo-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        {/* Messages Card - Soft Blue */}
+        <Card className="border-0 bg-gradient-to-br from-blue-200/60 via-cyan-300/60 to-teal-300/60 text-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center space-x-2 mb-3">
-                  <TrendingDown className="h-4 w-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/80">3%</span>
+                  <TrendingDown className="h-4 w-4 text-slate-700/80" />
+                  <span className="text-xs font-medium text-slate-700/80">3%</span>
                 </div>
                 <p className="text-3xl font-bold mb-1">{unreadMessages.length}</p>
-                <p className="text-sm text-white/90 font-medium">Messages</p>
+                <p className="text-sm text-slate-700/90 font-medium">Messages</p>
               </div>
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <MessageSquare className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 bg-white/30 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <MessageSquare className="h-5 w-5 text-slate-700" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Awards Card - Green Gradient */}
-        <Card className="border-0 bg-gradient-to-br from-emerald-400 via-green-500 to-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        {/* Grade Card - Soft Green */}
+        <Card className="border-0 bg-gradient-to-br from-emerald-200/60 via-green-300/60 to-teal-300/60 text-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center space-x-2 mb-3">
-                  <TrendingUp className="h-4 w-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/80">5%</span>
+                  <TrendingUp className="h-4 w-4 text-slate-700/80" />
+                  <span className="text-xs font-medium text-slate-700/80">5%</span>
                 </div>
                 <p className="text-3xl font-bold mb-1">B+</p>
-                <p className="text-sm text-white/90 font-medium">Grade Average</p>
+                <p className="text-sm text-slate-700/90 font-medium">Grade Average</p>
               </div>
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <Award className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 bg-white/30 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <Award className="h-5 w-5 text-slate-700" />
               </div>
             </div>
           </CardContent>
@@ -231,65 +231,65 @@ export const StudentDashboard = ({ user }: StudentDashboardProps) => {
               ))}
             </div>
             
-            {/* Schedule Blocks - Inspired by reference */}
+            {/* Schedule Blocks - Soft Color Palette */}
             <div className="grid grid-cols-5 gap-3 h-64">
               {/* Monday */}
               <div className="space-y-2">
-                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Math</div>
-                  <div className="text-white/80">Room 101</div>
+                <div className="bg-gradient-to-br from-orange-200/70 to-orange-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-orange-300/30">
+                  <div className="font-semibold">Math</div>
+                  <div className="text-slate-700/80">Room 101</div>
                 </div>
-                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Science</div>
-                  <div className="text-white/80">Room 201</div>
+                <div className="bg-gradient-to-br from-emerald-200/70 to-emerald-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-emerald-300/30">
+                  <div className="font-semibold">Science</div>
+                  <div className="text-slate-700/80">Room 201</div>
                 </div>
               </div>
               
               {/* Tuesday */}
               <div className="space-y-2">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>English</div>
-                  <div className="text-white/80">Room 102</div>
+                <div className="bg-gradient-to-br from-blue-200/70 to-blue-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-blue-300/30">
+                  <div className="font-semibold">English</div>
+                  <div className="text-slate-700/80">Room 102</div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-400 to-purple-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>History</div>
-                  <div className="text-white/80">Room 301</div>
+                <div className="bg-gradient-to-br from-purple-200/70 to-purple-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-purple-300/30">
+                  <div className="font-semibold">History</div>
+                  <div className="text-slate-700/80">Room 301</div>
                 </div>
               </div>
               
               {/* Wednesday */}
               <div className="space-y-2">
-                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Science</div>
-                  <div className="text-white/80">Lab 1</div>
+                <div className="bg-gradient-to-br from-emerald-200/70 to-emerald-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-emerald-300/30">
+                  <div className="font-semibold">Science</div>
+                  <div className="text-slate-700/80">Lab 1</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Math</div>
-                  <div className="text-white/80">Room 101</div>
+                <div className="bg-gradient-to-br from-orange-200/70 to-orange-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-orange-300/30">
+                  <div className="font-semibold">Math</div>
+                  <div className="text-slate-700/80">Room 101</div>
                 </div>
               </div>
               
               {/* Thursday */}
               <div className="space-y-2">
-                <div className="bg-gradient-to-br from-purple-400 to-purple-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Art</div>
-                  <div className="text-white/80">Studio A</div>
+                <div className="bg-gradient-to-br from-purple-200/70 to-purple-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-purple-300/30">
+                  <div className="font-semibold">Art</div>
+                  <div className="text-slate-700/80">Studio A</div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>English</div>
-                  <div className="text-white/80">Room 102</div>
+                <div className="bg-gradient-to-br from-blue-200/70 to-blue-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-blue-300/30">
+                  <div className="font-semibold">English</div>
+                  <div className="text-slate-700/80">Room 102</div>
                 </div>
               </div>
               
               {/* Friday */}
               <div className="space-y-2">
-                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>PE</div>
-                  <div className="text-white/80">Gym</div>
+                <div className="bg-gradient-to-br from-emerald-200/70 to-emerald-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-emerald-300/30">
+                  <div className="font-semibold">PE</div>
+                  <div className="text-slate-700/80">Gym</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-400 to-orange-500 text-white p-3 rounded-xl text-xs font-medium">
-                  <div>Math</div>
-                  <div className="text-white/80">Room 101</div>
+                <div className="bg-gradient-to-br from-orange-200/70 to-orange-300/70 text-slate-800 p-3 rounded-xl text-xs font-medium border border-orange-300/30">
+                  <div className="font-semibold">Math</div>
+                  <div className="text-slate-700/80">Room 101</div>
                 </div>
               </div>
             </div>

@@ -88,13 +88,13 @@ export const TeacherDashboard = ({ user }: TeacherDashboardProps) => {
   return (
     <div className="space-y-8">
       {/* Hero Banner - Teacher Welcome */}
-      <Card className="border-0 bg-gradient-to-r from-cyan-200/70 via-blue-200/70 to-indigo-200/70 text-slate-800 shadow-lg overflow-hidden">
+      <Card className="border-0 bg-gradient-to-r from-cyan-200/60 via-blue-200/60 to-indigo-200/60 text-slate-800 shadow-lg overflow-hidden border border-blue-300/30">
         <CardContent className="p-8">
           <div className="flex items-center justify-between">
             <div className="flex-1">
-              <h2 className="text-2xl font-bold mb-2">Your teaching classes are increasing</h2>
-              <p className="text-lg opacity-90 mb-4">Great about 30% than last year</p>
-              <div className="flex items-center space-x-6 text-sm">
+              <h2 className="text-2xl font-bold mb-2 text-slate-900">Your teaching classes are increasing</h2>
+              <p className="text-lg text-slate-700 mb-4">Great about 30% than last year</p>
+              <div className="flex items-center space-x-6 text-sm text-slate-700">
                 <div className="flex items-center space-x-2">
                   <MessageSquare className="h-4 w-4" />
                   <span>teacher@education.gov.sg</span>
@@ -105,8 +105,8 @@ export const TeacherDashboard = ({ user }: TeacherDashboardProps) => {
                 </div>
               </div>
             </div>
-            <div className="w-32 h-32 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <div className="w-20 h-20 bg-white/30 rounded-xl flex items-center justify-center">
+            <div className="w-32 h-32 bg-white/30 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/40">
+              <div className="w-20 h-20 bg-white/40 rounded-xl flex items-center justify-center">
                 <BookOpen className="h-10 w-10 text-slate-700" />
               </div>
             </div>
